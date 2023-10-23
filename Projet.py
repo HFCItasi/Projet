@@ -19,10 +19,6 @@ for k in range (0,4):
 
             destot1.append([couleur[(i-3+k)%4],0])
 
-
-
-test 
-
 destot2=[]
 
 a=0
