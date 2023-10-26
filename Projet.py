@@ -67,7 +67,7 @@ for j in range(0,4):
 
     a=a+1
 
-    for i in range(0,6):
+    for i in range(0,6): 
 
         destot[j].append(destot1[i+a])
 
