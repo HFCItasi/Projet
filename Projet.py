@@ -178,7 +178,60 @@ for i in range(0,10):
 
 nosresultats=[z,a,b,c,d,e,f,g,h,x,j]
 
-print(nosresultats)
+
+
+#Analyse des dès    les triples marchent très bien, il faut faire lcas cas ou triple et que le triple ne servent pas pour la création des autres combinaisons
+
+triple=0
+
+quatre=0
+
+for i in range(0,11):
+
+    if nosresultats[i]==3 and triple==0:
+
+        a=i
+
+        triple=triple+1
+
+        print("3 les mêmes")
+
+    if nosresultats[i]==3 and i!=a:
+
+        triple=triple+1
+
+        print("3 les mêmes")
+
+    if nosresultats[i]==4:
+
+        print("4 les mêmes")
+
+        quatre=quatre+1
+
+
+
+suite3=0
+
+suite4=0
+
+suite5=0
+
+#pas beoins de plusieurs suite
+
+for i in range(0,9):
+    if nosresultats[i]>=1 and nosresultats[i+1]>=1 and nosresultats[i+2]>=1  and nosresultats[i]<3 and nosresultats[i+1]<3 and nosresultats[i+2]<3:
+        print("suite de 3")
+
+        suite3=suite3+1
+
+        b=i
+
+    elif suite3>0 and nosresultats[i]>=1 and nosresultats[i+1]>=1 and nosresultats[i+2]>=1 and nosresultats[i+2+1]>=1 :
+
+        suite4=suite4+1
+  
+
+
 condi=[]
 r1=[]
 for item in nosresultats:
@@ -187,19 +240,23 @@ for item in nosresultats:
     
 a = str(input("Voulez vous relancer des dès ? "))
 if a == "oui": 
- s = int(input("Lesquels ?"))
+ s = int(input("Lesquels ? "))
  while nosresultats == condi:
   del les10[s]
   les10.append(destot[s][randint(0,5)]) 
   if les10 != condi: 
     r1.append(les10)
-    resultat1 = r1.somme
+    resultat1 = somme(r1)
+    print (resultat1)
     break
+  else: 
+    continue
 else: 
  r1.append(les10)
- resultat1 = r1.somme
+ resultat1 = somme(r1)
+ 
 print (resultat1)
-  
+
 
 
 
