@@ -223,11 +223,11 @@ for i in range(0, 10):
     if les10[i][1] == 1:
         a = a + 1
 
-
+liste_resultats = [item for item in les10 #éléments qui forment la suite]
 quest = str(input("Souhaitez vous relancer des dés "))
 if quest == "oui":  
- s = int(input("Quels dés souhaitez-vous relancer ? "))
  while len(nouvelle_liste) != 2:
+    s = int(input("Quels dés souhaitez-vous relancer ? "))
     del les10[s]
     les10.append(destot[s][randint(0, 5)])
     a=0
@@ -350,11 +350,9 @@ if quest == "oui":
     
     nouvelle_liste = [item for item in nosresultats if item == 3]
     condi = []
-    r1 = []
     resultat1 = 0
-    if len(nouvelle_liste) == 2:
-        r1.append(les10)
-        resultat1 += somme_liste(r1)
+    if len(nouvelle_liste) >= 2:
+        resultat1 += somme_liste(liste_resultats)
         print(resultat1)
         break
     else:
