@@ -84,25 +84,14 @@ for j in range(4,10):
         destot[j].append(destot2[i+b])
 
 
-
-# t=[]
-# for k in range (0,3): 
-#  t.append(destot[randint(0, 9)])
-#  print (t)
-#  a = str(input("Voulez vous retirez des dés ? "))
-# while a == "Oui" or "oui":
-#   s = int(input("Numéro du dès à retirer "))
-#   t.pop(s)    
-
-
-#phase 1
+r1 = [] 
 les10=[]
-r1=[]
+resultat1 = 0
 
-def somme(list):
+def somme(liste):
     somme = 0
-    for i in list:
-        somme = somme + i
+    for item in liste:
+        somme += item[1] 
     return somme
 
 for i in range (0,10):
@@ -110,8 +99,6 @@ for i in range (0,10):
     les10.append(destot[i][randint(0,5)])  
 
 
-
-print (les10)
 a=0
 b=0
 c=0
@@ -230,70 +217,42 @@ for i in range(0,9):
 
         suite4=suite4+1
   
+for i in range(0, 10):
+    if les10[i][1] == 1:
+        a = a + 1
 
 
-condi=[]
-r1=[]
+
+#phase 1
+print (les10)
+condi = []
+r1 = []
+resultat1 = 0
+
 for item in nosresultats:
-  if item == 3: 
-    condi.append(item)
-    
-a = str(input("Voulez vous relancer des dès ? "))
-if a == "oui": 
- s = int(input("Lesquels ? "))
- while nosresultats == condi:
-  del les10[s]
-  les10.append(destot[s][randint(0,5)]) 
-  if les10 != condi: 
+    if item != 3:
+        condi.append(item)
+s = int(input("Souhaitez-vous relancer des dès "))
+while condi in nosresultats:
+        s = int(input("Quels dés souhaitez-vous relancer ? "))
+        del les10[s]
+        les10.append(destot[s][randint(0, 5)])
+        if nosresultats != condi:
+            r1.append(les10)
+            resultat1 += somme(r1)
+            print(resultat1)
+            break
+        else:
+            continue
+else:
     r1.append(les10)
     resultat1 = somme(r1)
-    print (resultat1)
-    break
-  else: 
-    continue
-else: 
- r1.append(les10)
- resultat1 = somme(r1)
- 
-print (resultat1)
 
-
-
-
-
-
-  
+print(resultat1)
 
 
 #comptage
 
 
-
-
 # #phase 2 
 
-# les10=[]
-# r2=[]
-# for i in range (0,10):
-
-#     les10.append(destot[i][randint(0,5)])  
-# print (les10)
-
-# a = str(input("Voulez vous relancer des dès ? "))
-# if a == "oui": 
-#  s = int(input("Lesquels ?"))
-#  while les10 != #condi:
-#   del les10[s]
-#   les10.append(destot[s][randint(0,5)]) 
-#   print (les10)
-#   if les10=condi: 
-#     del les1O[#pas condi]
-#     r2.append(les10)
-#     resultat2 = somme.r2
-#     break
-# else: 
-#  del les1O[#pas condi]
-#  r2.append(les10)
-#  resultat2 = int somme.r2
- 
-# print resultat2
