@@ -2,6 +2,12 @@
 from random import *
 from math import *
 
+def somme_liste(liste):
+    somme = 0
+    for element in liste:
+        somme += element
+    return somme
+
 destot1=[]
 totdes1=[]
 
@@ -84,20 +90,16 @@ for j in range(4,10):
         destot[j].append(destot2[i+b])
 
 
-r1 = [] 
-les10=[]
+les10 = []
+r1 = []
 resultat1 = 0
 
-def somme(liste):
-    somme = 0
-    for item in liste:
-        somme += item[1] 
-    return somme
 
-for i in range (0,10):
 
-    les10.append(destot[i][randint(0,5)])  
-
+for i in range(0, 10):
+    les10.append(destot[i][randint(0, 5)])
+    
+print (les10)
 
 a=0
 b=0
@@ -164,7 +166,7 @@ for i in range(0,10):
         z=z+1
 
 nosresultats=[z,a,b,c,d,e,f,g,h,x,j]
-
+nouvelle_liste = [item for item in nosresultats if item == 3]
 
 
 #Analyse des dès    les triples marchent très bien, il faut faire lcas cas ou triple et que le triple ne servent pas pour la création des autres combinaisons
@@ -222,37 +224,148 @@ for i in range(0, 10):
         a = a + 1
 
 
+quest = str(input("Souhaitez vous relancer des dés "))
+if quest == "oui":  
+ s = int(input("Quels dés souhaitez-vous relancer ? "))
+ while len(nouvelle_liste) != 2:
+    del les10[s]
+    les10.append(destot[s][randint(0, 5)])
+    a=0
+    b=0
+    c=0
+    d=0
+    e=0
+    f=0
+    g=0
+    
+    h=0
 
-#phase 1
-print (les10)
-condi = []
-r1 = []
-resultat1 = 0
+    x=0
 
-for item in nosresultats:
-    if item != 3:
-        condi.append(item)
-s = int(input("Souhaitez-vous relancer des dès "))
-while condi in nosresultats:
-        s = int(input("Quels dés souhaitez-vous relancer ? "))
-        del les10[s]
-        les10.append(destot[s][randint(0, 5)])
-        if nosresultats != condi:
-            r1.append(les10)
-            resultat1 += somme(r1)
-            print(resultat1)
-            break
+    j=0
+
+    z=0
+
+    for i in range(0,10):
+
+
+
+        if les10[i][1]==1:
+
+            a=a+1
+
+        elif les10[i][1]==2:
+
+            b=b+1
+
+        elif les10[i][1]==3:
+
+            c=c+1
+
+        elif les10[i][1]==4:
+
+            d=d+1
+
+        elif les10[i][1]==5:
+
+            e=e+1
+
+        elif les10[i][1]==6:
+
+            f=f+1
+
+        elif les10[i][1]==7:
+
+            g=g+1
+
+        elif les10[i][1]==8:
+
+            h=h+0
+
+        elif les10[i][1]==9:
+
+            x=x+1
+
+        elif les10[i][1]==10:
+
+            j=j+1
+
         else:
-            continue
+
+            z=z+1
+
+    nosresultats=[z,a,b,c,d,e,f,g,h,x,j]
+    print (les10)
+
+    triple=0
+
+    quatre=0
+
+    for i in range(0,11):
+
+        if nosresultats[i]==3 and triple==0:
+
+            a=i
+
+            triple=triple+1
+
+            print("3 les mêmes")
+
+        if nosresultats[i]==3 and i!=a:
+
+            triple=triple+1
+
+            print("3 les mêmes")
+
+        if nosresultats[i]==4:
+
+            print("4 les mêmes")
+
+            quatre=quatre+1
+
+
+
+    suite3=0
+
+    suite4=0
+
+    suite5=0
+
+
+    for i in range(0,9):
+        if nosresultats[i]>=1 and nosresultats[i+1]>=1 and nosresultats[i+2]>=1  and nosresultats[i]<3 and nosresultats[i+1]<3 and nosresultats[i+2]<3:
+            print("suite de 3")
+
+            suite3=suite3+1
+
+            b=i
+
+        elif suite3>0 and nosresultats[i]>=1 and nosresultats[i+1]>=1 and nosresultats[i+2]>=1 and nosresultats[i+2+1]>=1 :
+
+            suite4=suite4+1
+    
+    for i in range(0, 10):
+        if les10[i][1] == 1:
+            a = a + 1
+    
+    nouvelle_liste = [item for item in nosresultats if item == 3]
+    condi = []
+    r1 = []
+    resultat1 = 0
+    if len(nouvelle_liste) == 2:
+        r1.append(les10)
+        resultat1 += somme_liste(r1)
+        print(resultat1)
+        break
+    else:
+        continue
 else:
     r1.append(les10)
-    resultat1 = somme(r1)
+    resultat1 = somme_liste(r1)
 
 print(resultat1)
-
 
 #comptage
 
 
 # #phase 2 
-
