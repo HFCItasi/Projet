@@ -91,8 +91,7 @@ for j in range(4,10):
 
 
 les10 = []
-r1 = []
-resultat1 = 0
+
 
 
 
@@ -100,6 +99,8 @@ for i in range(0, 10):
     les10.append(destot[i][randint(0, 5)])
     
 print (les10)
+les10_chiffres = [element[1] for element in les10]
+les10_couleurs = [element[0] for element in les10]
 
 a=0
 b=0
@@ -166,7 +167,7 @@ for i in range(0,10):
         z=z+1
 
 nosresultats=[z,a,b,c,d,e,f,g,h,x,j]
-nouvelle_liste = [item for item in nosresultats if item == 3]
+
 
 
 #Analyse des dès    les triples marchent très bien, il faut faire lcas cas ou triple et que le triple ne servent pas pour la création des autres combinaisons
@@ -197,8 +198,6 @@ for i in range(0,11):
 
         quatre=quatre+1
 
-
-
 suite3=0
 
 suite4=0
@@ -223,10 +222,21 @@ for i in range(0, 10):
     if les10[i][1] == 1:
         a = a + 1
 
-liste_resultats = [item for item in les10 #éléments qui forment la suite]
+
+#phase 1 
+
+r1 = []
+resultat1 = 0
+chiffre_resultats1 = [] 
+for element in les10_chiffres:
+    if les10_chiffres.count(element) > 2 and element not in chiffre_resultats1:
+        chiffre_resultats1.append(element)
+
+print (chiffre_resultats1)
+ 
 quest = str(input("Souhaitez vous relancer des dés "))
 if quest == "oui":  
- while len(nouvelle_liste) != 2:
+ while len(chiffre_resultats1) <2 :
     s = int(input("Quels dés souhaitez-vous relancer ? "))
     del les10[s]
     les10.append(destot[s][randint(0, 5)])
@@ -348,20 +358,24 @@ if quest == "oui":
         if les10[i][1] == 1:
             a = a + 1
     
-    nouvelle_liste = [item for item in nosresultats if item == 3]
-    condi = []
+    chiffre_resultats1 = [] 
+    for element in les10_chiffres:
+        if les10_chiffres.count(element) > 2 and element not in chiffre_resultats1:
+            chiffre_resultats1.append(element)
+
+    print (chiffre_resultats1)
     resultat1 = 0
-    if len(nouvelle_liste) >= 2:
-        resultat1 += somme_liste(liste_resultats)
+
+    if len(chiffre_resultats1) >= 2:
+        resultat1 += 3*somme_liste(chiffre_resultats1)
         print(resultat1)
         break
     else:
         continue
 else:
-    r1.append(les10)
-    resultat1 = somme_liste(r1)
+    resultat1 += 3*somme_liste(chiffre_resultats1)
 
-print(resultat1)
+print("Score", resultat1)
 
 #comptage
 

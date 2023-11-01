@@ -164,11 +164,17 @@ for i in range(0,10):
         z=z+1
 print (les10)
 nosresultats=[z,a,b,c,d,e,f,g,h,x,j]
-print (len(nosresultats))
-
-nouvelle_liste = [item for item in nosresultats if item == 3]
-print(nouvelle_liste)
 
 
-#tant qu'il n'y a pas deux fois 3 dans notre nouvelle liste on relance les dés 
+les10_chiffres = [element[1] for element in les10]
+print (les10_chiffres)
 
+
+
+
+#Liste pour suite de 3 chiffres 
+
+chiffre_resultats = [] 
+for i in range(len(les10_chiffres) - 2):
+    if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2]:
+        chiffre_resultats.append(les10_chiffres[i:i+3])
