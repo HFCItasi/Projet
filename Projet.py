@@ -234,7 +234,7 @@ for element in les10_chiffres:
 
 print (chiffre_resultats1)
  
-quest = str(input("Souhaitez vous relancer des dés "))
+quest = str(input("Souhaitez vous relancer des dés ? "))
 if quest == "oui":  
  while len(chiffre_resultats1) <2 :
     s = int(input("Quels dés souhaitez-vous relancer ? "))
@@ -359,6 +359,8 @@ if quest == "oui":
             a = a + 1
 
     chiffre_resultats1 = [] 
+    les10_chiffres = [element[1] for element in les10]
+
     for element in les10_chiffres:
         if les10_chiffres.count(element) > 2 and element not in chiffre_resultats1:
             chiffre_resultats1.append(element)
@@ -378,7 +380,6 @@ else:
 
 print("Score: ", resultat1)
 
-#comptage
 
 
 # #phase 2 
