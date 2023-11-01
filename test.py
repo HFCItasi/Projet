@@ -162,19 +162,310 @@ for i in range(0,10):
     else:
 
         z=z+1
-print (les10)
+
 nosresultats=[z,a,b,c,d,e,f,g,h,x,j]
 
 
 les10_chiffres = [element[1] for element in les10]
-print (les10_chiffres)
 
 
 
 
-#Liste pour suite de 3 chiffres 
+#Liste pour suite de n chiffres 
 
-chiffre_resultats = [] 
-for i in range(len(les10_chiffres) - 2):
-    if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2]:
-        chiffre_resultats.append(les10_chiffres[i:i+3])
+# chiffre_resultats = [] 
+# for i in range(len(les10_chiffres) - n):
+#     if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2] and ... and les10_chiffres[i] + (n-1) == les10_chiffres[i+(n-1)] :
+#         chiffre_resultats.append(les10_chiffres[i:i+n])
+
+
+# #phase 2 
+les10 = []
+for i in range(0, 10):
+    les10.append(destot[i][randint(0, 5)])
+    
+print ("Phase 2 : ", les10)
+les10_chiffres = [element[1] for element in les10]
+les10_couleurs = [element[0] for element in les10]
+resultat2 = 0
+suite_resultats2 = []
+brelans_resultats2 = [] 
+for element in les10_chiffres:
+    if les10_chiffres.count(element) > 2 and element not in brelans_resultats2:
+        brelans_resultats2.append(element)
+for i in range(len(les10_chiffres) - 3):
+         if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2] and les10_chiffres[i] + 3 == les10_chiffres[i + 3]:
+            suite_resultats2.extend(les10_chiffres[i:i+4])
+
+    a=0
+    b=0
+    c=0
+    d=0
+    e=0
+    f=0
+    g=0
+    
+    h=0
+
+    x=0
+
+    j=0
+
+    z=0
+
+    for i in range(0,10):
+
+
+
+        if les10[i][1]==1:
+
+            a=a+1
+
+        elif les10[i][1]==2:
+
+            b=b+1
+
+        elif les10[i][1]==3:
+
+            c=c+1
+
+        elif les10[i][1]==4:
+
+            d=d+1
+
+        elif les10[i][1]==5:
+
+            e=e+1
+
+        elif les10[i][1]==6:
+
+            f=f+1
+
+        elif les10[i][1]==7:
+
+            g=g+1
+
+        elif les10[i][1]==8:
+
+            h=h+0
+
+        elif les10[i][1]==9:
+
+            x=x+1
+
+        elif les10[i][1]==10:
+
+            j=j+1
+
+        else:
+
+            z=z+1
+
+    nosresultats=[z,a,b,c,d,e,f,g,h,x,j]
+    print (les10)
+
+    triple=0
+
+    quatre=0
+
+    for i in range(0,11):
+
+        if nosresultats[i]==3 and triple==0:
+
+            a=i
+
+            triple=triple+1
+
+            print("3 les mêmes")
+
+        if nosresultats[i]==3 and i!=a:
+
+            triple=triple+1
+
+            print("3 les mêmes")
+
+        if nosresultats[i]==4:
+
+            print("4 les mêmes")
+
+            quatre=quatre+1
+
+
+
+    suite3=0
+
+    suite4=0
+
+    suite5=0
+
+
+    for i in range(0,9):
+        if nosresultats[i]>=1 and nosresultats[i+1]>=1 and nosresultats[i+2]>=1  and nosresultats[i]<3 and nosresultats[i+1]<3 and nosresultats[i+2]<3:
+            print("suite de 3")
+
+            suite3=suite3+1
+
+            b=i
+
+        elif suite3>0 and nosresultats[i]>=1 and nosresultats[i+1]>=1 and nosresultats[i+2]>=1 and nosresultats[i+2+1]>=1 :
+
+            suite4=suite4+1
+    
+    for i in range(0, 10):
+        if les10[i][1] == 1:
+            a = a + 1
+
+quest = str(input("Souhaitez vous relancer des dés ? "))
+if quest == "oui":  
+ while len(brelans_resultats2) <1 and len(suite_resultats2) <1 :
+    s = int(input("Quels dés souhaitez-vous relancer ? "))
+    del les10[s]
+    les10.append(destot[s][randint(0, 5)])
+    a=0
+    b=0
+    c=0
+    d=0
+    e=0
+    f=0
+    g=0
+    
+    h=0
+
+    x=0
+
+    j=0
+
+    z=0
+
+    for i in range(0,10):
+
+
+
+        if les10[i][1]==1:
+
+            a=a+1
+
+        elif les10[i][1]==2:
+
+            b=b+1
+
+        elif les10[i][1]==3:
+
+            c=c+1
+
+        elif les10[i][1]==4:
+
+            d=d+1
+
+        elif les10[i][1]==5:
+
+            e=e+1
+
+        elif les10[i][1]==6:
+
+            f=f+1
+
+        elif les10[i][1]==7:
+
+            g=g+1
+
+        elif les10[i][1]==8:
+
+            h=h+0
+
+        elif les10[i][1]==9:
+
+            x=x+1
+
+        elif les10[i][1]==10:
+
+            j=j+1
+
+        else:
+
+            z=z+1
+
+    nosresultats=[z,a,b,c,d,e,f,g,h,x,j]
+    print (les10)
+
+    triple=0
+
+    quatre=0
+
+    for i in range(0,11):
+
+        if nosresultats[i]==3 and triple==0:
+
+            a=i
+
+            triple=triple+1
+
+            print("3 les mêmes")
+
+        if nosresultats[i]==3 and i!=a:
+
+            triple=triple+1
+
+            print("3 les mêmes")
+
+        if nosresultats[i]==4:
+
+            print("4 les mêmes")
+
+            quatre=quatre+1
+
+
+
+    suite3=0
+
+    suite4=0
+
+    suite5=0
+
+
+    for i in range(0,9):
+        if nosresultats[i]>=1 and nosresultats[i+1]>=1 and nosresultats[i+2]>=1  and nosresultats[i]<3 and nosresultats[i+1]<3 and nosresultats[i+2]<3:
+            print("suite de 3")
+
+            suite3=suite3+1
+
+            b=i
+
+        elif suite3>0 and nosresultats[i]>=1 and nosresultats[i+1]>=1 and nosresultats[i+2]>=1 and nosresultats[i+2+1]>=1 :
+
+            suite4=suite4+1
+    
+    for i in range(0, 10):
+        if les10[i][1] == 1:
+            a = a + 1
+
+    brelans_resultats2 = [] 
+    les10_chiffres = [element[1] for element in les10]
+    suite_resultats2 = []
+
+    for element in les10_chiffres:
+        if les10_chiffres.count(element) > 2 and element not in brelans_resultats2:
+            brelans_resultats2.append(element)
+
+    for i in range(len(les10_chiffres) - 3):
+         if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2] and les10_chiffres[i] + 3 == les10_chiffres[i + 3]:
+            suite_resultats2.extend(les10_chiffres[i:i+4])
+
+    print ("Suite de 3 : ",brelans_resultats2)
+    resultat2 = 0
+    if len(brelans_resultats2) == 1 and len(suite_resultats2) == 1:
+        resultat1 += 3*somme_liste(brelans_resultats2)
+        resultat2 += somme_liste(suite_resultats2)       
+        print(resultat2)
+        break
+else:
+ if len(brelans_resultats2) == 1 and len(suite_resultats2) == 0 or len(brelans_resultats2) == 0 and len(suite_resultats2) == 1 or len(brelans_resultats2) == 0 and len(suite_resultats2) == 0:
+    resultat2 = 0
+ else: 
+    resultat2 += 3*somme_liste(brelans_resultats2)
+    resultat2 += somme_liste(suite_resultats2) 
+
+print("Score: ", resultat2)
+
+
+print("Score: ", resultat2)
