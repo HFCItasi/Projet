@@ -19,11 +19,11 @@ for k in range (0,4):
 
         if i<=3:
 
-            destot1.append([couleur[(i+k)%4],i+1])
+            destot1.append([couleur[(i+1+k)%4],i+1])
 
         elif i>3:
 
-            destot1.append([couleur[(i-3+k)%4],0])
+            destot1.append([couleur[(i+1-3+k)%4],0])
 
 destot2=[]
 
@@ -357,25 +357,26 @@ if quest == "oui":
     for i in range(0, 10):
         if les10[i][1] == 1:
             a = a + 1
-    
+
     chiffre_resultats1 = [] 
     for element in les10_chiffres:
         if les10_chiffres.count(element) > 2 and element not in chiffre_resultats1:
             chiffre_resultats1.append(element)
 
-    print (chiffre_resultats1)
+    print ("Suite de 3",chiffre_resultats1)
     resultat1 = 0
 
     if len(chiffre_resultats1) >= 2:
         resultat1 += 3*somme_liste(chiffre_resultats1)
         print(resultat1)
         break
-    else:
-        continue
 else:
+ if len(chiffre_resultats1) == 1:
+    resultat1 = 0
+ else: 
     resultat1 += 3*somme_liste(chiffre_resultats1)
 
-print("Score", resultat1)
+print("Score: ", resultat1)
 
 #comptage
 
