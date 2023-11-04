@@ -2,6 +2,7 @@
 
 from random import *
 from math import *
+import collections
 
 destot1=[]
 totdes1=[]
@@ -191,3 +192,19 @@ for element in les10_chiffres:
  if les10_chiffres.count(element) > 2 and element not in brelans_resultats:
   brelans_resultats.append(element) 
 
+
+#Suite de 7 
+
+les10_chiffres = sorted(collections.Counter(les10_chiffres))
+for i in range(len(les10_chiffres) - 6):
+    if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2] and les10_chiffres[i] + 3 == les10_chiffres[i + 3] and les10_chiffres[i] + 4 == les10_chiffres[i + 4] and les10_chiffres[i] + 5 == les10_chiffres[i + 5] and les10_chiffres[i] + 6 == les10_chiffres[i + 6] :
+     if not Suite7 or len(Suite7) < 7:
+            Suite4 = les10_chiffres[i:i + 7]
+    elif sum(Suite7) < sum(les10_chiffres[i:i + 7]):
+            Suite7 = les10_chiffres[i:i + 7]
+
+#Carré : 
+carré = []
+for element in les10_chiffres:
+    if les10_chiffres.count(element) > 3 and element not in carré:
+        carré.append(element)

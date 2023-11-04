@@ -109,16 +109,16 @@ les10_couleurs = [element[0] for element in les10]
 
 
 resultat1 = 0
-brelans_resultats1 = [] 
+brelans = [] 
 for element in les10_chiffres:
-    if les10_chiffres.count(element) > 2 and element not in brelans_resultats1:
-        brelans_resultats1.append(element)
+    if les10_chiffres.count(element) > 2 and element not in brelans:
+        brelans.append(element)
 
-print ("Brelans : ", brelans_resultats1)
+print ("Brelans : ", brelans)
  
 quest = str(input("Souhaitez vous relancer des dés ? "))
 if quest == "oui":  
- while len(brelans_resultats1) <2 or 0 in brelans_resultats1:
+ while len(brelans) <2 or 0 in brelans:
     s = int(input("Quels dés souhaitez-vous relancer ? "))
     del les10[s]
     les10.append(destot[s][randint(0, 5)])
@@ -128,66 +128,66 @@ if quest == "oui":
         if les10[i][1] == 1:
             a = a + 1
 
-    brelans_resultats1 = [] 
+    brelans = [] 
     les10_chiffres = [element[1] for element in les10]
 
     for element in les10_chiffres:
-        if les10_chiffres.count(element) > 2 and element not in brelans_resultats1:
-            brelans_resultats1.append(element)
+        if les10_chiffres.count(element) > 2 and element not in brelans:
+            brelans.append(element)
 
-    print ("Brelans : ",brelans_resultats1)
+    print ("Brelans : ",brelans)
     resultat1 = 0
 
-    if len(brelans_resultats1) >= 2:
-        resultat1 += 3*somme_liste(brelans_resultats1)
+    if len(brelans) >= 2:
+        resultat1 += 3*somme_liste(brelans)
         break
 else:
- if len(brelans_resultats1) == 1:
+ if len(brelans) == 1:
     resultat1 = 0
  else: 
-    resultat1 += 3*somme_liste(brelans_resultats1)
+    resultat1 += 3*somme_liste(brelans)
 
 print("Fin de la phase 1 ! ")
 print("Score: ", resultat1)
 
 
-# #phase 2 
+##############################phase 2######################### 
 les10 = []
 for i in range(0, 10):
     les10.append(destot[i][randint(0, 5)])
 
-print ("Phase 2, Objectif : Realiser un brelan et une suite de 4 chiffres") 
+print ("Phase 2, Objectif : Realiser un brelan et une Suite4 de 4 chiffres") 
 print (les10)
 les10_chiffres = [element[1] for element in les10]
 les10_chiffres.sort()
 les10_couleurs = [element[0] for element in les10]
 resultat2 = 0
-suite_resultats2 = []
-brelans_resultats2 = [] 
+Suite4 = []
+brelans = [] 
 
 for element in les10_chiffres:
-    if les10_chiffres.count(element) > 2 and element not in brelans_resultats2:
-        brelans_resultats2.append(element)
+    if les10_chiffres.count(element) > 2 and element not in brelans:
+        brelans.append(element)
 
 les10_chiffres = sorted(collections.Counter(les10_chiffres))
 for i in range(len(les10_chiffres) - 3):
     if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2] and les10_chiffres[i] + 3 == les10_chiffres[i + 3]:
-        if not suite_resultats2 or len(suite_resultats2) < 4:
-            suite_resultats2 = les10_chiffres[i:i + 4]
-        elif sum(suite_resultats2) < sum(les10_chiffres[i:i + 4]):
-            suite_resultats2 = les10_chiffres[i:i + 4]
+        if not Suite4 or len(Suite4) < 4:
+            Suite4 = les10_chiffres[i:i + 4]
+        elif sum(Suite4) < sum(les10_chiffres[i:i + 4]):
+            Suite4 = les10_chiffres[i:i + 4]
             
 
 
-print ("Suite de 4 : ", suite_resultats2)
-print ("Brelans: ",brelans_resultats2)
+print ("Suite de 4 : ", Suite4)
+print ("Brelans: ",brelans)
 
 for i in range(0, 10):
     if les10[i][1] == 1:
         a = a + 1
 quest = str(input("Souhaitez vous relancer des dés ? "))
 if quest == "oui":  
- while len(brelans_resultats2) < 1 or len(suite_resultats2) <1 or 0 in brelans_resultats2:
+ while len(brelans) < 1 or len(Suite4) <1 or 0 in brelans:
     s = int(input("Quels dés souhaitez-vous relancer ? "))
     del les10[s]
     les10.append(destot[s][randint(0, 5)])
@@ -199,38 +199,280 @@ if quest == "oui":
         if les10[i][1] == 1:
             a = a + 1
 
-    brelans_resultats2 = [] 
+    brelans = [] 
     les10_chiffres = [element[1] for element in les10]
     les10_chiffres.sort()
-    suite_resultats2 = []
+    Suite4 = []
 
     for element in les10_chiffres:
-        if les10_chiffres.count(element) > 2 and element not in brelans_resultats2:
-            brelans_resultats2.append(element)
+        if les10_chiffres.count(element) > 2 and element not in brelans:
+            brelans.append(element)
 
     les10_chiffres = sorted(collections.Counter(les10_chiffres))
     for i in range(len(les10_chiffres) - 3):
      if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2] and les10_chiffres[i] + 3 == les10_chiffres[i + 3]:
-         if not suite_resultats2 or len(suite_resultats2) < 4:
-            suite_resultats2 = les10_chiffres[i:i + 4]
-         elif sum(suite_resultats2) < sum(les10_chiffres[i:i + 4]):
-            suite_resultats2 = les10_chiffres[i:i + 4]
+         if not Suite4 or len(Suite4) < 4:
+            Suite4 = les10_chiffres[i:i + 4]
+         elif sum(Suite4) < sum(les10_chiffres[i:i + 4]):
+            Suite4 = les10_chiffres[i:i + 4]
 
-    print ("Suite de 4 : ", suite_resultats2)
-    print ("Brelans: ",brelans_resultats2)
+    print ("Suite de 4 : ", Suite4)
+    print ("Brelans: ",brelans)
 
-    if len(brelans_resultats2) == 1 and len(suite_resultats2) == 4:
-        resultat2 = resultat2 + 3*somme_liste(brelans_resultats2)
-        resultat2 = resultat2 + somme_liste(suite_resultats2)       
+    if len(brelans) == 1 and len(Suite4) == 4:
+        resultat2 = resultat2 + 3*somme_liste(brelans)
+        resultat2 = resultat2 + somme_liste(Suite4)       
         break
 else:
- if len(brelans_resultats2) == 1 and len(suite_resultats2) == 0 or len(brelans_resultats2) == 0 and len(suite_resultats2) == 4 or len(brelans_resultats2) == 0 and len(suite_resultats2) == 0:
+ if len(brelans) == 1 and len(Suite4) == 0 or len(brelans) == 0 and len(Suite4) == 4 or len(brelans) == 0 and len(Suite4) == 0:
     resultat2 = 0
  else: 
-    resultat2 += 3*somme_liste(brelans_resultats1)
-    resultat2 += somme_liste(suite_resultats2) 
+    resultat2 += 3*somme_liste(brelans)
+    resultat2 += somme_liste(Suite4) 
 
 print ("Objectif Accomplit ! Fin de la phase 2")
 print("Score de la phase: ", resultat2)    
 print("Score totale : ", resultat1 + resultat2) 
+
+
+
+####################################################phase 3########################################
+
+les10 = []
+for i in range(0, 10):
+    les10.append(destot[i][randint(0, 5)])
+
+print ("Phase 3, Objectif : Realiser un carré et une Suite de 4 chiffres") 
+print (les10)
+les10_chiffres = [element[1] for element in les10]
+les10_chiffres.sort()
+les10_couleurs = [element[0] for element in les10]
+resultat3 = 0
+Suite4 = []
+carré = [] 
+
+for element in les10_chiffres:
+    if les10_chiffres.count(element) > 3 and element not in carré:
+        carré.append(element)
+
+les10_chiffres = sorted(collections.Counter(les10_chiffres))
+for i in range(len(les10_chiffres) - 3):
+    if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2] and les10_chiffres[i] + 3 == les10_chiffres[i + 3]:
+        if not Suite4 or len(Suite4) < 4:
+            Suite4 = les10_chiffres[i:i + 4]
+        elif sum(Suite4) < sum(les10_chiffres[i:i + 4]):
+            Suite4 = les10_chiffres[i:i + 4]
+            
+
+
+print ("Suite de 4 : ", Suite4)
+print ("Carré: ", carré)
+
+for i in range(0, 10):
+    if les10[i][1] == 1:
+        a = a + 1
+quest = str(input("Souhaitez vous relancer des dés ? "))
+if quest == "oui":  
+ while len(carré) < 1 or len(Suite4) <1 or 0 in carré:
+    s = int(input("Quels dés souhaitez-vous relancer ? "))
+    del les10[s]
+    les10.append(destot[s][randint(0, 5)])
+    a=0
+    print (les10)
+
+    
+    for i in range(0, 10):
+        if les10[i][1] == 1:
+            a = a + 1
+
+    carré = [] 
+    les10_chiffres = [element[1] for element in les10]
+    les10_chiffres.sort()
+    Suite4 = []
+
+    for element in les10_chiffres:
+        if les10_chiffres.count(element) > 3 and element not in carré:
+            carré.append(element)
+
+    les10_chiffres = sorted(collections.Counter(les10_chiffres))
+    for i in range(len(les10_chiffres) - 3):
+     if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2] and les10_chiffres[i] + 3 == les10_chiffres[i + 3]:
+         if not Suite4 or len(Suite4) < 4:
+            Suite4 = les10_chiffres[i:i + 4]
+         elif sum(Suite4) < sum(les10_chiffres[i:i + 4]):
+            Suite4 = les10_chiffres[i:i + 4]
+
+    print ("Suite de 4 : ", Suite4)
+    print ("Carré: ",carré)
+
+    if len(carré) == 1 and len(Suite4) == 4:
+        resultat3 = resultat3 + 4*somme_liste(carré)
+        resultat3 = resultat3 + somme_liste(Suite4)       
+        break
+else:
+ if len(carré) == 1 and len(Suite4) == 0 or len(carré) == 0 and len(Suite4) == 4 or len(carré) == 0 and len(Suite4) == 0:
+    resultat3 = 0
+ else: 
+    resultat3 += 4*somme_liste(carré)
+    resultat3 += somme_liste(Suite4) 
+
+print ("Objectif Accomplit ! Fin de la phase 3")
+print("Score de la phase: ", resultat3)    
+print("Score totale : ", resultat1 + resultat2 + resultat3) 
+
+######################"phase4################################
+
+les10 = []
+for i in range(0, 10):
+    les10.append(destot[i][randint(0, 5)])
+
+print ("Phase 4, Objectif : Realiser une suite de 7 chiffres") 
+print (les10)
+les10_chiffres = [element[1] for element in les10]
+les10_chiffres.sort()
+les10_couleurs = [element[0] for element in les10]
+resultat4 = 0
+Suite7 = []
+
+
+les10_chiffres = sorted(collections.Counter(les10_chiffres))
+for i in range(len(les10_chiffres) - 6):
+    if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2] and les10_chiffres[i] + 3 == les10_chiffres[i + 3] and les10_chiffres[i] + 4 == les10_chiffres[i + 4] and les10_chiffres[i] + 5 == les10_chiffres[i + 5] and les10_chiffres[i] + 6 == les10_chiffres[i + 6] :
+        if not Suite7 or len(Suite7) < 7:
+            Suite4 = les10_chiffres[i:i + 7]
+        elif sum(Suite7) < sum(les10_chiffres[i:i + 7]):
+            Suite7 = les10_chiffres[i:i + 7]
+            
+
+
+print ("Suite de 7 : ", Suite7)
+
+for i in range(0, 10):
+    if les10[i][1] == 1:
+        a = a + 1
+quest = str(input("Souhaitez vous relancer des dés ? "))
+if quest == "oui":  
+ while len(Suite7) <7 or 0 in Suite7:
+    s = int(input("Quels dés souhaitez-vous relancer ? "))
+    del les10[s]
+    les10.append(destot[s][randint(0, 5)])
+    a=0
+    print (les10)
+
+    
+    for i in range(0, 10):
+        if les10[i][1] == 1:
+            a = a + 1
+
+    les10_chiffres = [element[1] for element in les10]
+    les10_chiffres.sort()
+    Suite7 = []
+
+
+    les10_chiffres = sorted(collections.Counter(les10_chiffres))
+    for i in range(len(les10_chiffres) - 6):
+     if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2] and les10_chiffres[i] + 3 == les10_chiffres[i + 3] and les10_chiffres[i] + 4 == les10_chiffres[i + 4] and les10_chiffres[i] + 5 == les10_chiffres[i + 5] and les10_chiffres[i] + 6 == les10_chiffres[i + 6] :
+        if not Suite7 or len(Suite7) < 7:
+            Suite4 = les10_chiffres[i:i + 7]
+        elif sum(Suite7) < sum(les10_chiffres[i:i + 7]):
+            Suite7 = les10_chiffres[i:i + 7]
+            
+
+    print ("Suite de 7 : ", Suite7)
+   
+
+    if len(Suite7) == 7:
+        resultat4 = resultat4 + somme_liste(Suite7)       
+        break
+else:
+ if len(Suite7) < 7 : 
+    resultat4 = 0
+ else: 
+    resultat4 += somme_liste(Suite7) 
+
+print ("Objectif Accomplit ! Fin de la phase 4")
+print("Score de la phase: ", resultat4)    
+print("Score totale : ", resultat1 + resultat2 + resultat3 + resultat4) 
+
+
+
+###############Phase 5###############
+
+les10 = []
+for i in range(0, 10):
+    les10.append(destot[i][randint(0, 5)])
+
+print ("Phase 5, Objectif : Realiser une suite de 8 chiffres") 
+print (les10)
+les10_chiffres = [element[1] for element in les10]
+les10_chiffres.sort()
+les10_couleurs = [element[0] for element in les10]
+resultat5 = 0
+Suite8 = []
+
+
+les10_chiffres = sorted(collections.Counter(les10_chiffres))
+for i in range(len(les10_chiffres) - 7):
+    if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2] and les10_chiffres[i] + 3 == les10_chiffres[i + 3] and les10_chiffres[i] + 4 == les10_chiffres[i + 4] and les10_chiffres[i] + 5 == les10_chiffres[i + 5] and les10_chiffres[i] + 6 == les10_chiffres[i + 6] and les10_chiffres[i] + 7 == les10_chiffres[i + 7] :
+        if not Suite8 or len(Suite8) < 8:
+            Suite8 = les10_chiffres[i:i + 8]
+        elif sum(Suite8) < sum(les10_chiffres[i:i + 8]):
+            Suite8 = les10_chiffres[i:i + 8]
+            
+
+
+print ("Suite de 8 : ", Suite8)
+
+for i in range(0, 10):
+    if les10[i][1] == 1:
+        a = a + 1
+quest = str(input("Souhaitez vous relancer des dés ? "))
+if quest == "oui":  
+ while len(Suite7) <8 or 0 in Suite8:
+    s = int(input("Quels dés souhaitez-vous relancer ? "))
+    del les10[s]
+    les10.append(destot[s][randint(0, 5)])
+    a=0
+    print (les10)
+
+    
+    for i in range(0, 10):
+        if les10[i][1] == 1:
+            a = a + 1
+
+    les10_chiffres = [element[1] for element in les10]
+    les10_chiffres.sort()
+    Suite8 = []
+
+
+les10_chiffres = sorted(collections.Counter(les10_chiffres))
+for i in range(len(les10_chiffres) - 7):
+    if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2] and les10_chiffres[i] + 3 == les10_chiffres[i + 3] and les10_chiffres[i] + 4 == les10_chiffres[i + 4] and les10_chiffres[i] + 5 == les10_chiffres[i + 5] and les10_chiffres[i] + 6 == les10_chiffres[i + 6] and les10_chiffres[i] + 7 == les10_chiffres[i + 7] :
+        if not Suite8 or len(Suite8) < 8:
+            Suite8 = les10_chiffres[i:i + 8]
+        elif sum(Suite8) < sum(les10_chiffres[i:i + 8]):
+            Suite8 = les10_chiffres[i:i + 8]
+            
+
+    print ("Suite de 8 : ", Suite8)
+   
+
+    if len(Suite8) == 8:
+        resultat5 = resultat5 + somme_liste(Suite8)       
+        break
+else:
+ if len(Suite8) < 8 : 
+    resultat5 = 0
+ else: 
+    resultat5 += somme_liste(Suite8) 
+
+print ("Objectif Accomplit ! Fin de la phase 5")
+print("Score de la phase: ", resultat5)    
+print("Score totale : ", resultat1 + resultat2 + resultat3 + resultat4 + resultat5) 
+
+if resultat1 + resultat2 + resultat3 + resultat4 + resultat5 >= 221 :
+   print("Bonus de 40 Points !")
+   print("Score totale", resultat1 + resultat2 + resultat3 + resultat4 + resultat5 + 40)
+   
+
 
