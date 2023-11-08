@@ -1,4 +1,3 @@
-
 from random import *
 from math import *
 import collections
@@ -473,7 +472,6 @@ if resultat1 + resultat2 + resultat3 + resultat4 + resultat5 >= 221 :
    print("Bonus de 40 Points !")
    print("Score totale", resultat1 + resultat2 + resultat3 + resultat4 + resultat5)
    
-<<<<<<< HEAD
 ###############Phase 6###############
 
 les10 = []
@@ -608,9 +606,68 @@ print ("Objectif Accomplit ! Fin de la phase 7")
 print("Score de la phase: ", resultat7)    
 print("Score totale : ", resultat1 + resultat2 + resultat3 + resultat4 + resultat5+ resultat6 + resultat7) 
  
+
+###############Phase 8###############
+
+les10 = []
+for i in range(0, 10):
+    les10.append(destot[i][randint(0, 5)])
+
+print ("Phase 8, Objectif : Il faut 7 dès de la même couleur") 
+print (les10)
+les10_chiffres = [element[1] for element in les10]
+les10_chiffres.sort()
+les10_couleurs = [element[0] for element in les10]
+resultat8 = 0
+suite7couleur=0 
+ 
+ for i in range (0,10):
+   while 
+   
+
+
+for i in range(0, 10):
+    if les10[i][1] == 1:
+        a = a + 1
+quest = str(input("Souhaitez vous relancer des dés ? "))
+if quest == "oui":  
+ while len(carre) <2:
+    s = int(input("Quels dés souhaitez-vous relancer ? "))
+    del les10[s]
+    les10.append(destot[s][randint(0, 5)])
+    a=0
+    print (les10)
+
+    
+    for i in range(0, 10):
+        if les10[i][1] == 1:
+            a = a + 1
+
+    les10_chiffres = [element[1] for element in les10]
+    les10_chiffres.sort()
+   
+carre = []
+for element in les10_chiffres:
+    if les10_chiffres.count(element) > 3 and element not in carre:
+        carre.append(element)
+    print("vous avez 4 fois ces numéros", carre)
+   
+
+    if len(carre) == 2:
+        resultat6 = resultat6 + somme_liste(Suite9)       
+        break
+else:
+ if len(carre) < 2: 
+    resultat7 = 0
+ else: 
+    resultat7 += 4*somme_liste(carre) 
+
+print ("Objectif Accomplit ! Fin de la phase 7")
+print("Score de la phase: ", resultat7)    
+print("Score totale : ", resultat1 + resultat2 + resultat3 + resultat4 + resultat5+ resultat6 + resultat7) 
+ 
  
 
 
-=======
-les10_couleurs = [element[0] for element in les10]
->>>>>>> 22e482b2387b6c73006f14f1f8b03f061cd97733
+
+
