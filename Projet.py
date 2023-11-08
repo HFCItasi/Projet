@@ -166,9 +166,9 @@ brelans = []
 for element in les10_chiffres:
     if les10_chiffres.count(element) > 2 and element not in brelans:
         brelans.append(element)
-        les10_chiffres.sort(element)
+        les10_chiffres.remove(element)
 
-        
+
 les10_chiffres = sorted(collections.Counter(les10_chiffres))
 for i in range(len(les10_chiffres) - 3):
     if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2] and les10_chiffres[i] + 3 == les10_chiffres[i + 3]:
@@ -207,6 +207,7 @@ if quest == "oui":
     for element in les10_chiffres:
         if les10_chiffres.count(element) > 2 and element not in brelans:
             brelans.append(element)
+            les10_chiffres.remove(element)
 
     les10_chiffres = sorted(collections.Counter(les10_chiffres))
     for i in range(len(les10_chiffres) - 3):
@@ -425,7 +426,7 @@ for i in range(0, 10):
         a = a + 1
 quest = str(input("Souhaitez vous relancer des dés ? "))
 if quest == "oui":  
- while len(Suite7) <8 or 0 in Suite8:
+ while len(Suite8) <8 or 0 in Suite8:
     s = int(input("Quels dés souhaitez-vous relancer ? "))
     del les10[s]
     les10.append(destot[s][randint(0, 5)])
@@ -468,7 +469,8 @@ print("Score de la phase: ", resultat5)
 print("Score totale : ", resultat1 + resultat2 + resultat3 + resultat4 + resultat5) 
 
 if resultat1 + resultat2 + resultat3 + resultat4 + resultat5 >= 221 :
+   resultat5 += 40
    print("Bonus de 40 Points !")
-   print("Score totale", resultat1 + resultat2 + resultat3 + resultat4 + resultat5 + 40)
+   print("Score totale", resultat1 + resultat2 + resultat3 + resultat4 + resultat5)
    
 les10_couleurs = [element[0] for element in les10]
