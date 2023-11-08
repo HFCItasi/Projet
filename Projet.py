@@ -571,17 +571,13 @@ for i in range(0, 10):
         a = a + 1
 quest = str(input("Souhaitez vous relancer des dés ? "))
 if quest == "oui":  
- while len(carre) <2:
+ while len(carre)<2:
     s = int(input("Quels dés souhaitez-vous relancer ? "))
     del les10[s]
     les10.append(destot[s][randint(0, 5)])
     a=0
     print (les10)
 
-    
-    for i in range(0, 10):
-        if les10[i][1] == 1:
-            a = a + 1
 
     les10_chiffres = [element[1] for element in les10]
     les10_chiffres.sort()
@@ -594,7 +590,7 @@ for element in les10_chiffres:
    
 
     if len(carre) == 2:
-        resultat6 = resultat6 + somme_liste(Suite9)       
+        resultat7= resultat7 + 4*somme_liste(carre)       
         break
 else:
  if len(carre) < 2: 
@@ -619,22 +615,21 @@ les10_chiffres = [element[1] for element in les10]
 les10_chiffres.sort()
 les10_couleurs = [element[0] for element in les10]
 resultat8 = 0
-suite7couleur=0 
+suitecouleur=0 
  
- for i in range (0,10):
-   while 
-   
+for i in range (0,10):
+   k=i
+   while les10_couleurs[0]==les10_couleurs[k]:
+        suitecouleur=suitecouleur+1 
+        k=k+1
+print("vous avez", suitecouleur, "dès de la même couleur")
 
-
-for i in range(0, 10):
-    if les10[i][1] == 1:
-        a = a + 1
 quest = str(input("Souhaitez vous relancer des dés ? "))
 if quest == "oui":  
- while len(carre) <2:
+ while suitecouleur <7:
     s = int(input("Quels dés souhaitez-vous relancer ? "))
     del les10[s]
-    les10.append(destot[s][randint(0, 5)])
+    les10.append(destot[randint(0, 5)][randint(0, 5)])
     a=0
     print (les10)
 
@@ -646,25 +641,31 @@ if quest == "oui":
     les10_chiffres = [element[1] for element in les10]
     les10_chiffres.sort()
    
-carre = []
-for element in les10_chiffres:
-    if les10_chiffres.count(element) > 3 and element not in carre:
-        carre.append(element)
-    print("vous avez 4 fois ces numéros", carre)
+suitecouleur=0 
+ 
+for i in range (0,10):
+   k=i
+   while les10_couleurs[0]==les10_couleurs[k%10]:
+        suitecouleur=suitecouleur+1 
+        k=k+1
+        lacouleur=i
+print("vous avez", suitecouleur, "dès de la même couleur", les10_couleurs[lacouleur])
    
+for i in range (0,10):
+    resultatbis8=les10[i][lacouleur]+resultatbis8
 
-    if len(carre) == 2:
-        resultat6 = resultat6 + somme_liste(Suite9)       
+    if suitecouleur==7:
+        resultat8 = resultat8 + resultatbis8     
         break
 else:
- if len(carre) < 2: 
-    resultat7 = 0
+ if suitecouleur < 2: 
+    resultat8 = 0
  else: 
-    resultat7 += 4*somme_liste(carre) 
+    resultat8 += resultatbis8
 
-print ("Objectif Accomplit ! Fin de la phase 7")
-print("Score de la phase: ", resultat7)    
-print("Score totale : ", resultat1 + resultat2 + resultat3 + resultat4 + resultat5+ resultat6 + resultat7) 
+print ("Objectif Accomplit ! Fin de la phase 8")
+print("Score de la phase: ", resultat8)    
+print("Score totale : ", resultat1 + resultat2 + resultat3 + resultat4 + resultat5+ resultat6 + resultat7 + resultat8) 
  
  
 
