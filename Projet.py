@@ -166,7 +166,9 @@ brelans = []
 for element in les10_chiffres:
     if les10_chiffres.count(element) > 2 and element not in brelans:
         brelans.append(element)
+        les10_chiffres.sort(element)
 
+        
 les10_chiffres = sorted(collections.Counter(les10_chiffres))
 for i in range(len(les10_chiffres) - 3):
     if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2] and les10_chiffres[i] + 3 == les10_chiffres[i + 3]:
