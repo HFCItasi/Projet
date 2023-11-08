@@ -103,7 +103,6 @@ for i in range(0, 10):
 print (les10)
 les10_chiffres = [element[1] for element in les10]
 les10_chiffres.sort()
-les10_couleurs = [element[0] for element in les10]
 
 
 
@@ -156,11 +155,10 @@ les10 = []
 for i in range(0, 10):
     les10.append(destot[i][randint(0, 5)])
 
-print ("Phase 2, Objectif : Realiser un brelan et une Suite4 de 4 chiffres") 
+print ("Phase 2, Objectif : Realiser un brelan et une Suite de 4 chiffres") 
 print (les10)
 les10_chiffres = [element[1] for element in les10]
 les10_chiffres.sort()
-les10_couleurs = [element[0] for element in les10]
 resultat2 = 0
 Suite4 = []
 brelans = [] 
@@ -246,7 +244,6 @@ print ("Phase 3, Objectif : Realiser un carré et une Suite de 4 chiffres")
 print (les10)
 les10_chiffres = [element[1] for element in les10]
 les10_chiffres.sort()
-les10_couleurs = [element[0] for element in les10]
 resultat3 = 0
 Suite4 = []
 carré = [] 
@@ -330,7 +327,6 @@ print ("Phase 4, Objectif : Realiser une suite de 7 chiffres")
 print (les10)
 les10_chiffres = [element[1] for element in les10]
 les10_chiffres.sort()
-les10_couleurs = [element[0] for element in les10]
 resultat4 = 0
 Suite7 = []
 
@@ -406,7 +402,6 @@ print ("Phase 5, Objectif : Realiser une suite de 8 chiffres")
 print (les10)
 les10_chiffres = [element[1] for element in les10]
 les10_chiffres.sort()
-les10_couleurs = [element[0] for element in les10]
 resultat5 = 0
 Suite8 = []
 
@@ -474,5 +469,4 @@ if resultat1 + resultat2 + resultat3 + resultat4 + resultat5 >= 221 :
    print("Bonus de 40 Points !")
    print("Score totale", resultat1 + resultat2 + resultat3 + resultat4 + resultat5 + 40)
    
-
-
+les10_couleurs = [element[0] for element in les10]

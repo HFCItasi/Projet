@@ -208,3 +208,5 @@ carré = []
 for element in les10_chiffres:
     if les10_chiffres.count(element) > 3 and element not in carré:
         carré.append(element)
+
+    
