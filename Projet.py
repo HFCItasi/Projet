@@ -103,7 +103,6 @@ for i in range(0, 10):
 print (les10)
 les10_chiffres = [element[1] for element in les10]
 les10_chiffres.sort()
-les10_couleurs = [element[0] for element in les10]
 
 
 
@@ -156,11 +155,10 @@ les10 = []
 for i in range(0, 10):
     les10.append(destot[i][randint(0, 5)])
 
-print ("Phase 2, Objectif : Realiser un brelan et une Suite4 de 4 chiffres") 
+print ("Phase 2, Objectif : Realiser un brelan et une Suite de 4 chiffres") 
 print (les10)
 les10_chiffres = [element[1] for element in les10]
 les10_chiffres.sort()
-les10_couleurs = [element[0] for element in les10]
 resultat2 = 0
 Suite4 = []
 brelans = [] 
@@ -168,6 +166,8 @@ brelans = []
 for element in les10_chiffres:
     if les10_chiffres.count(element) > 2 and element not in brelans:
         brelans.append(element)
+        les10_chiffres.remove(element)
+
 
 les10_chiffres = sorted(collections.Counter(les10_chiffres))
 for i in range(len(les10_chiffres) - 3):
@@ -207,6 +207,7 @@ if quest == "oui":
     for element in les10_chiffres:
         if les10_chiffres.count(element) > 2 and element not in brelans:
             brelans.append(element)
+            les10_chiffres.remove(element)
 
     les10_chiffres = sorted(collections.Counter(les10_chiffres))
     for i in range(len(les10_chiffres) - 3):
@@ -246,7 +247,6 @@ print ("Phase 3, Objectif : Realiser un carre et une Suite de 4 chiffres")
 print (les10)
 les10_chiffres = [element[1] for element in les10]
 les10_chiffres.sort()
-les10_couleurs = [element[0] for element in les10]
 resultat3 = 0
 Suite4 = []
 carre = [] 
@@ -330,7 +330,6 @@ print ("Phase 4, Objectif : Realiser une suite de 7 chiffres")
 print (les10)
 les10_chiffres = [element[1] for element in les10]
 les10_chiffres.sort()
-les10_couleurs = [element[0] for element in les10]
 resultat4 = 0
 Suite7 = []
 
@@ -406,7 +405,6 @@ print ("Phase 5, Objectif : Realiser une suite de 8 chiffres")
 print (les10)
 les10_chiffres = [element[1] for element in les10]
 les10_chiffres.sort()
-les10_couleurs = [element[0] for element in les10]
 resultat5 = 0
 Suite8 = []
 
@@ -428,7 +426,7 @@ for i in range(0, 10):
         a = a + 1
 quest = str(input("Souhaitez vous relancer des dés ? "))
 if quest == "oui":  
- while len(Suite7) <8 or 0 in Suite8:
+ while len(Suite8) <8 or 0 in Suite8:
     s = int(input("Quels dés souhaitez-vous relancer ? "))
     del les10[s]
     les10.append(destot[s][randint(0, 5)])
@@ -471,9 +469,11 @@ print("Score de la phase: ", resultat5)
 print("Score totale : ", resultat1 + resultat2 + resultat3 + resultat4 + resultat5) 
 
 if resultat1 + resultat2 + resultat3 + resultat4 + resultat5 >= 221 :
+   resultat5 += 40
    print("Bonus de 40 Points !")
-   print("Score totale", resultat1 + resultat2 + resultat3 + resultat4 + resultat5 + 40)
+   print("Score totale", resultat1 + resultat2 + resultat3 + resultat4 + resultat5)
    
+<<<<<<< HEAD
 ###############Phase 6###############
 
 les10 = []
@@ -611,3 +611,6 @@ print("Score totale : ", resultat1 + resultat2 + resultat3 + resultat4 + resulta
  
 
 
+=======
+les10_couleurs = [element[0] for element in les10]
+>>>>>>> 22e482b2387b6c73006f14f1f8b03f061cd97733

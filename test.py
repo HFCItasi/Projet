@@ -208,3 +208,11 @@ carré = []
 for element in les10_chiffres:
     if les10_chiffres.count(element) > 3 and element not in carré:
         carré.append(element)
+
+les10_chiffres = sorted(collections.Counter(les10_chiffres))
+for i in range(len(les10_chiffres) - 8):
+    if les10_chiffres[i] + 1 == les10_chiffres[i + 1] and les10_chiffres[i] + 2 == les10_chiffres[i + 2] and les10_chiffres[i] + 3 == les10_chiffres[i + 3] and les10_chiffres[i] + 4 == les10_chiffres[i + 4] and les10_chiffres[i] + 5 == les10_chiffres[i + 5] and les10_chiffres[i] + 6 == les10_chiffres[i + 6] and les10_chiffres[i] + 7 == les10_chiffres[i + 7] and les10_chiffres[i] + 8 == les10_chiffres[i + 8] :
+        if not Suite9 or len(Suite9) < 8:
+            Suite9 = les10_chiffres[i:i + 9]
+        elif sum(Suite9) < sum(les10_chiffres[i:i + 9]):
+            Suite9 = les10_chiffres[i:i + 9]
