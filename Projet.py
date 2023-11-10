@@ -116,7 +116,7 @@ print ("Brelans : ", brelans)
  
 quest = str(input("Souhaitez vous relancer des dés ? "))
 if quest == "oui":  
- while len(brelans) <2 or 0 in brelans:
+ while len(brelans) <2 :
     s = int(input("Quels dés souhaitez-vous relancer ? "))
     del les10[s]
     les10.append(destot[s][randint(0, 5)])
@@ -138,7 +138,7 @@ if quest == "oui":
         resultat1 += 3*somme_liste(brelans)
         break
 else:
- if len(brelans) == 1:
+ if len(brelans) <2 :
     resultat1 = 0
  else: 
     resultat1 += 3*somme_liste(brelans)
