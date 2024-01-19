@@ -11,12 +11,15 @@ def dictionnaire(f):
             if len(elements) >= 2:
                 nom_forme = elements[0]
                 niveau_recursivite = elements[1]
-                départ = elements[2]
-                taille = elements[3]
-                couleur = elements[4]
+                departx = elements[2]
+                departy = elements[3]
+                taillex = elements[4]
+                tailley = elements[5]
+                couleur = elements[6]
+
 
                 cle = f"{nom_forme} , {niveau_recursivite}" 
-                valeurs = [départ, taille, couleur]
+                valeurs = [departx, departy, taillex, tailley, couleur]
                 dictionnaire_figures[cle] = valeurs
             else: 
                 print("Veuillez fournir un fichier avec d'avantages d'information")
@@ -27,7 +30,13 @@ def parcourir_dictionnaire(dictionnaire_figures):
     for cle in dictionnaire_figures.keys():
         valeurs = dictionnaire_figures[cle]
         print(valeurs)
-        coords = [[0,1]] # calcul_coordonnées(valeurs)
+        toutpoints =  fractalecarre(valeurs[0],valeurs[1],valeurs[3],cle[1]) # calcul_coordonnées(valeurs)
+        x_carre=str(separer_points(toutpoint))
+        y_carre=str(separer_points(toutpoint))
+        carrex.write(x_carre)
+        carrey.write(y_carre)
+        carrex.close()
+        carrey.close()
         fich = creation_fichiers(coords, cle)
         dictionnaire_figures[cle] = fich
 
