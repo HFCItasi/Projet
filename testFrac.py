@@ -1,290 +1,185 @@
 import os
 import matplotlib.pyplot as plt
 
-f = open('zconfigfichier.txt')
+import numpy as np
 
-text= f.read()
+import math
 
-print(text)
 
 
+#Fonction 1: calcul de la fractale triangle
 
-f.close()
+def trinity(order, vertices):
 
+   if order == 0:
 
+       return vertices
 
-# #Fonction 1: calcul de la fractale ens
+   else:
+       midpoints = [
 
-# import matplotlib.pyplot as plt
+           ((vertices[0][0] + vertices[1][0]) / 2, (vertices[0][1] + vertices[1][1]) / 2),
 
-#
+           ((vertices[1][0] + vertices[2][0]) / 2, (vertices[1][1] + vertices[2][1]) / 2),
 
-# def cantorenscoord(x, y, length, depth):
+           ((vertices[2][0] + vertices[0][0]) / 2, (vertices[2][1] + vertices[0][1]) / 2)
 
-#     if depth == 0:
+       ]
 
-#         return [(x, y), (x + length, y)]
 
-# #
 
-# #     # Calcul des coordonnées pour les deux segments
+       return trinity(order - 1, [vertices[0], midpoints[0], midpoints[2]]) + \
+              trinity(order - 1, [midpoints[0], vertices[1], midpoints[1]]) + \
+              trinity(order - 1, [midpoints[2], midpoints[1], vertices[2]])
 
-#     x_left = x
 
-#     x_right = x + length
 
-#     y_next = y - 0.1  # Ajustez cette valeur pour l'espace vertical entre les lignes
+#Fonction 2: calcul de la fractale classique
 
-#
+def fractale_koch(x1, y1, x2, y2, profondeur):
 
-# #     # Appels récursifs pour les deux segments
+   if profondeur == 0:
 
-#     left_segment = cantorenscoord(x_left, y_next, length / 3, depth - 1)
+       return [(x1, y1), (x2, y2)]
 
-#     right_segment = cantorenscoord(x_left + 2 * length / 3, y_next, length / 3,     depth - 1)
+   else:
 
-#
+       # Calculer les points intermédiaires
 
-# #     # Concaténation des résultats
+       x3 = (2 * x1 + x2) / 3
 
-#     return left_segment + right_segment
+       y3 = (2 * y1 + y2) / 3
 
-#
+       x4 = (x1 + 2 * x2) / 3
 
-# def fonc1():
+       y4 = (y1 + 2 * y2) / 3
 
-#     depth = 4  # Vous pouvez ajuster le niveau de détail en changeant cette valeur
+       x5 = (x3 + x4) / 2 + (y4 - y3) * (3 ** 0.5) / 2
 
-#     length = 1.0
+       y5 = (y3 + y4) / 2 + (x3 - x4) * (3 ** 0.5) / 2
 
-#
 
-#     coordinates = cantorenscoord(0, 0, length, depth)
 
-#     print(coordinates)
+       # Appels récursifs pour les segments restants
 
+       segments = []
 
+       segments += fractale_koch(x1, y1, x3, y3, profondeur - 1)
 
-# Les coordonnés:
+       segments += fractale_koch(x3, y3, x5, y5, profondeur - 1)
 
+       segments += fractale_koch(x5, y5, x4, y4, profondeur - 1)
 
+       segments += fractale_koch(x4, y4, x2, y2, profondeur - 1)
 
-#
 
-# def cantor(x1, x2, y, degrecu):
 
-#     if degrecu == 0:
+       return segments
 
-#         return [x1, x2], [y, y]
 
-#     else:
 
-#         x_left = (2 * x1 + x2) / 3
+# Fonction pour générer les coordonnées du flocon de Koch
 
-#         x_right = (x1 + 2 * x2) / 3
+def flocon_koch(longueur_segment, profondeur):
 
-#         y_new = y - 1  # Ajustez cette valeur pour le séparateur vertical
+   # Coordonnées des sommets du triangle équilatéral
 
-#
+   x1, y1 = 0, 0
 
-#         left_x, left_y = cantor(x1, x_left, y_new, degrecu - 1)
+   x2, y2 = longueur_segment, 0
 
-#         right_x, right_y = cantor(x_right, x2, y_new, degrecu - 1)
+   x3, y3 = longueur_segment / 2, longueur_segment * (3 ** 0.5) / 2
 
-#
 
-#         return
 
+   # Générer les segments de Koch pour chaque côté du triangle
 
-def fractalecarre(x, y, longueur_cote, niveau):
+   segments = []
 
-    """
+   segments += fractale_koch(x1, y1, x2, y2, profondeur)
 
-    Fonction récursive pour calculer les abscisses et les ordonnées d'une fractale carrée.
+   segments += fractale_koch(x2, y2, x3, y3, profondeur)
 
+   segments += fractale_koch(x3, y3, x1, y1, profondeur)
 
 
-    Paramètres :
 
-    - x, y : coordonnées du coin supérieur gauche du carré.
+   return segments
 
-    - longueur_cote : longueur du côté du carré.
 
-    - niveau : niveau de la fractale.
+#Fonction 3 :fractale feigenbaum
 
+def fractale_feigenbaum(x, y, longueur, angle, profondeur):
 
+   if profondeur == 0:
 
-    Retourne :
+       return [(x, y)]
 
-    - Liste des abscisses et des ordonnées de la fractale carrée.
 
-    """
 
-    if niveau == 0:
+   # Calcul des nouvelles coordonnées
 
-        return [(x, y), (x + longueur_cote, y), (x + longueur_cote, y - longueur_cote), (x, y - longueur_cote), (x, y)]
+   x_nouveau = x + longueur * np.cos(angle)
 
+   y_nouveau = y + longueur * np.sin(angle)
 
 
-    nouvelle_longueur = longueur_cote / 3
 
-    nouveaux_points = []
+   # Récupération des coordonnées du point actuel
 
+   coordonnees = [(x, y), (x_nouveau, y_nouveau)]
 
 
-    for i in range(3):
 
-        for j in range(3):
+   # Appels récursifs pour les deux branches
 
-            if i == 1 and j == 1:
+   coordonnees += fractale_feigenbaum(x_nouveau, y_nouveau, longueur / 2, angle - np.radians(45), profondeur - 1)
 
-                continue  # Ignore le carré du milieu
+   coordonnees += fractale_feigenbaum(x_nouveau, y_nouveau, longueur / 2, angle + np.radians(45), profondeur - 1)
 
-            nouvel_x = x + i * nouvelle_longueur
 
-            nouvel_y = y - j * nouvelle_longueur
 
-            nouveaux_points.extend(fractalecarre(nouvel_x, nouvel_y, nouvelle_longueur, niveau - 1))
-
-
-
-    return nouveaux_points
-
-
-
-
-
-
-
-# #Fonction 2: calcul de la fractale classique
-
-# import matplotlib.pyplot as plt
-
-# import numpy as np
-
-#
-
-# def koch_snowflake(ax, order, length, x=0, y=0, angle=0):
-
-#     if order == 0:
-
-#         x_end = x + length * np.cos(np.radians(angle))
-
-#         y_end = y + length * np.sin(np.radians(angle))
-
-#         ax.plot([x, x_end], [y, y_end], color='blue')
-
-#         return x_end, y_end
-
-#
-
-#     # Calcul des points pour la fractale de Koch
-
-#     x1, y1 = koch_snowflake(ax, order - 1, length / 3, x, y, angle)
-
-#     x2, y2 = koch_snowflake(ax, order - 1, length / 3, x1, y1, angle - 60)
-
-#     x3, y3 = koch_snowflake(ax, order - 1, length / 3, x2, y2, angle + 60)
-
-#     x4, y4 = koch_snowflake(ax, order - 1, length / 3, x3, y3, angle)
-
-#
-
-#     return x4, y4
-
-#
-
-
-
-
-
-
-
-
-
-
+   return coordonnees
 
 #création des fichiers de lecture
 
-cantorx = open('cantorx.txt','w')
 
-cantory = open('cantory.txt','w')
 
-carrex = open('carrex.txt','w')
+# triangle_x = "trianglex.txt"
 
-carrey = open('carrey.txt','w')
-
-flocon = open('flocon.txt', 'w')
-
-carre = open ('carre.txt' , 'w')
-
-Feigenbaum = open('Feigenbaum.txt', 'w')
+# triangle_y = "triangley.txt"
 
 
 
+# flocon_x = 'floconx.txt'
 
-
-# #remplissage des fichiers
-
-# cantor.write("\n 1, 2 ,5,4 ,75464,8,7,5,45,6,")
-
-# flocon.write("\nfloconcoord()")
-
-# Feigenbaum.write("\nFeigenbaumcoord()")
+# flocon_y = 'flocony.txt'
 
 
 
-#
+# feigx= 'feigeunx.txt'
 
-# affichecantor=cantor.read()
-
-# afficheflocon=[flocon.read()]
-
-# affichefeigen=[Feigenbaum.read()]
-
-#plt.plot([])
-
-#plt.pause(0.1)
-
-#plt.close()
+# feigy= 'feigeuny.txt'
 
 
 
 
 
+# trianglx = open(triangle_x,'w')
+
+# triangly = open(triangle_y,'w')
 
 
-#ans=input('Quelle figure désirez vous?')
 
-#if ans=='Cantor':
+# floconx = open(flocon_x, 'w')
 
-# liste_pts = cantor(0, 8, 1, 6)
-
-# print(liste_pts)
-
-# text_x=""
-
-# text_y=""
-
-# for pt in liste_pts:
-
-#     text_x += str(pt[0])+"\n"
-
-#     text_y += str(pt[1])+"\n"
-
-#
-
-# cantorx.write(text_x)
-
-# cantory.write(text_y)
-
-# cantorx.close()
-
-# cantory.close()
-
-#
+# flocony = open(flocon_y, 'w')
 
 
+
+# feigeunbaumx=open(feigx, 'w')
+
+# feigeunbaumy=open(feigy, 'w')
 
 
 
@@ -292,59 +187,73 @@ Feigenbaum = open('Feigenbaum.txt', 'w')
 
 def separer_points(liste_points):
 
-    x_coords = []
+   x_coords = []
 
-    y_coords = []
+   y_coords = []
 
-    for point in liste_points:
+   for point in liste_points:
 
-        x= point[0]
+       x= point[0]
 
-        y=point[1]
+       y=point[1]
 
-        x_coords.append(x)
+       x_coords.append(x)
 
-        y_coords.append(y)
-
-
-
-    return x_coords, y_coords
+       y_coords.append(y)
 
 
 
-toutpoint=fractalecarre(0,0,1,4)
-
-x_carre=str(separer_points(toutpoint))
-
-y_carre=str(separer_points(toutpoint))
-
-carrex.write(x_carre)
-
-carrey.write(y_carre)
-
-carrex.close()
-
-carrey.close()
+   return x_coords, y_coords
 
 
 
-# valeur ='eeee eezgntzo ee'
+# ahah=trinity(6, [(0, 0), (1, 0), (0.5, np.sqrt(3)/2)])
 
-# valeur = valeur[2:-2]
+# x_triangle=separer_points(ahah)[0]
 
-# l = valeur.split(",")
+# y_triangle=separer_points(ahah)[1]
 
-# abscisse_lis=[]
+# trianglx.write(str(x_triangle))
 
-# for i in range(l):
+# triangly.write(str(y_triangle))
 
-#     composante= l[i]
+# trianglx.close()
 
-#     if i%2:
-
-        #abscisse vs ordonnnees
+# triangly.close()
 
 
+
+
+
+# loulou=fractale_feigenbaum(0,0,2, 30 ,10)
+
+# x_feigeun=separer_points(loulou)[0]
+
+# y_feigeun=separer_points(loulou)[1]
+
+# feigeunbaumx.write(str(x_feigeun))
+
+# feigeunbaumy.write(str(y_feigeun))
+
+# feigeunbaumx.close()
+
+# feigeunbaumy.close()
+
+
+
+# popo=flocon_koch(100, 10)
+
+# x_flocon=(separer_points(popo)[0])
+
+# y_flocon=(separer_points(popo)[1])
+
+# floconx.write(str(x_flocon))
+
+# flocony.write(str(y_flocon))
+
+# floconx.close()
+
+# flocony.close()
 
 
 
@@ -352,31 +261,59 @@ carrey.close()
 
 def tracer_figure(fichier_x, fichier_y):
 
-    # Lire les coordonnées x et y depuis les fichiers
+   # Lire les coordonnées x et y depuis les fichiers
 
-    open(fichier_x, 'r') as file_x, open(fichier_y, 'r') as file_y:
+   file_x=open(fichier_x, 'r').readlines()
 
-    x_coords = [float(line.strip()) for line in file_x]
-
-    y_coords = [float(line.strip()) for line in file_y]
+   file_y=open(fichier_y, 'r').readlines()
 
 
 
-    # Tracer la figure
-
-    plt.plot(x_coords, y_coords, marker='o', linestyle='-')
-
-    plt.title('Figure tracée à partir de fichiers de coordonnées')
-
-    plt.xlabel('Coordonnées X')
-
-    plt.ylabel('Coordonnées Y')
-
-    plt.grid(True)
-
-    plt.show()
 
 
+   strx=str(file_x[0])[1:-1]
+
+
+
+   listx = strx.split(",")
+
+   listxfloat =[]
+
+   for x in listx:
+
+       listxfloat.append(float(x))
+
+   x_coords=listxfloat
+
+
+
+   stry=str(file_y[0])[1:-1]
+
+
+
+   listy = stry.split(",")
+
+   listyfloat =[]
+
+   for y in listy:
+
+       listyfloat.append(float(y))
+
+   y_coords=listyfloat
+
+   # Tracer la figure
+
+   plt.plot(x_coords, y_coords, marker='o', linestyle='-')
+
+   plt.title('Figure tracée à partir de fichiers de coordonnées')
+
+   plt.xlabel('Coordonnées X')
+
+   plt.ylabel('Coordonnées Y')
+
+   plt.grid(True)
+
+   plt.show()
 
 
 
@@ -394,9 +331,9 @@ def tracer_figure(fichier_x, fichier_y):
 
 #Suppression des fichiers
 
-flocon.close()
+#flocon.close()
 
-Feigenbaum.close()
+#Feigenbaum.close()
 
 #os.remove('cantorx.txt')
 
@@ -406,5 +343,4 @@ Feigenbaum.close()
 
 #os.remove('Feigenbaum.txt')
 
-#
 
