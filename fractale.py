@@ -1,7 +1,7 @@
 import os
 import matplotlib.pyplot as plt
 import numpy as np
-
+import random
 
 
 #Fonction 1: calcul de la fractale triangle
@@ -32,28 +32,60 @@ def trinity(recursivite, vertices):
 
 # #Fonction 2: calcul de la fractale de koch
 
-
-def flocon_koch(level, p1=(75, 50.5), p2=(25, 50.5)):
-    if level == 0:
-        return [p1, p2]
+def fractale_koch(x1, y1, x2, y2, profondeur):
+    if profondeur == 0:
+        return [(x1, y1), (x2, y2)]
     else:
-        x1, y1 = p1
-        x2, y2 = p2
-        
+        # Calculer les points intermédiaires
         x3 = (2 * x1 + x2) / 3
         y3 = (2 * y1 + y2) / 3
-        x5 = (x1 + 2 * x2) / 3
-        y5 = (y1 + 2 * y2) / 3
-        x4 = 0.5 * (x1 + x2) + (np.sqrt(3) / 6) * (y1 - y2)
-        y4 = 0.5 * (y1 + y2) + (np.sqrt(3) / 6) * (x2 - x1)
+        x4 = (x1 + 2 * x2) / 3
+        y4 = (y1 + 2 * y2) / 3
+        x5 = (x3 + x4) / 2 + (y4 - y3) * (3 ** 0.5) / 2
+        y5 = (y3 + y4) / 2 + (x3 - x4) * (3 ** 0.5) / 2
 
+        # Appels récursifs pour les segments restants
         segments = []
-        segments.extend(flocon_koch(level - 1, p1, (x3, y3)))
-        segments.extend(flocon_koch(level - 1, (x3, y3), (x4, y4)))
-        segments.extend(flocon_koch(level - 1, (x4, y4), (x5, y5)))
-        segments.extend(flocon_koch(level - 1, (x5, y5), p2))
-        
+        segments += fractale_koch(x1, y1, x3, y3, profondeur - 1)
+        segments += fractale_koch(x3, y3, x5, y5, profondeur - 1)
+        segments += fractale_koch(x5, y5, x4, y4, profondeur - 1)
+        segments += fractale_koch(x4, y4, x2, y2, profondeur - 1)
+
         return segments
+
+# Fonction pour générer les coordonnées du flocon de Koch
+def flocon_koch(longueur_segment, profondeur):
+    x1, y1 = 0, 0
+    x2, y2 = longueur_segment, 0
+    x3, y3 = longueur_segment / 2, longueur_segment * (3 ** 0.5) / 2
+    segments = []
+    segments += fractale_koch(x1, y1, x2, y2, profondeur)
+    segments += fractale_koch(x2, y2, x3, y3, profondeur)
+    segments += fractale_koch(x3, y3, x1, y1, profondeur)
+
+    return segments
+
+# def flocon_koch(level, p1=(75, 50.5), p2=(25, 50.5)):
+#     if level == 0:
+#         return [p1, p2]
+#     else:
+#         x1, y1 = p1
+#         x2, y2 = p2
+        
+#         x3 = (2 * x1 + x2) / 3
+#         y3 = (2 * y1 + y2) / 3
+#         x5 = (x1 + 2 * x2) / 3
+#         y5 = (y1 + 2 * y2) / 3
+#         x4 = 0.5 * (x1 + x2) + (np.sqrt(3) / 6) * (y1 - y2)
+#         y4 = 0.5 * (y1 + y2) + (np.sqrt(3) / 6) * (x2 - x1)
+
+#         segments = []
+#         segments.extend(flocon_koch(level - 1, p1, (x3, y3)))
+#         segments.extend(flocon_koch(level - 1, (x3, y3), (x4, y4)))
+#         segments.extend(flocon_koch(level - 1, (x4, y4), (x5, y5)))
+#         segments.extend(flocon_koch(level - 1, (x5, y5), p2))
+        
+#         return segments
 
 
 
@@ -106,6 +138,8 @@ def tracer_figure(fichier_x, fichier_y, couleur):
     stry = str(file_y[0])[1:-1]
     listy = stry.split(",")
     listyfloat = [float(y) for y in listy]
+
+    plt.clf()
     plt.plot(listxfloat, listyfloat, marker='o', linestyle='-', color=couleur)
     plt.grid(True)
     plt.show()
@@ -160,7 +194,7 @@ def parcourir_dictionnaire(dictionnaire_figures):
         if valeurs[5] == "triangle":
             toutpoint = trinity(int(valeurs[6]), [(0, 0), (1, 0), (0.5, np.sqrt(3)/2)])
         elif valeurs[5] == "Koch":
-            toutpoint = flocon_koch(int(valeurs[6]))
+            toutpoint = flocon_koch(int(valeurs[2]), int(valeurs[6]))
         elif valeurs[5] == "Feigenbaum":
             toutpoint = fractale_feigenbaum(int(valeurs[0]), int(valeurs[1]), int(valeurs[2]), 30, int(valeurs[6]))
         nom_fichier_x = valeurs[5] + "_x.txt"
@@ -173,29 +207,43 @@ def parcourir_dictionnaire(dictionnaire_figures):
     
     return dictionnaire_figures
 
+#Supression des fichiers créés après execution
+def supprimer_fichiers(fichier_x, fichier_y):
+    os.remove(fichier_x)
+    os.remove(fichier_y)
 
+#Prise du fichier txt avec les informations
 print ("veuillez fournir le fichier d'informations")
 f = str(input("Répertoire du fichier : "))
 d = dictionnaire(f)
 d = parcourir_dictionnaire(d)
 
+#Interactions avec l'utilisateur:
+
 print ("Veuillez choisir la figure que vous voulez afficher parmi les suivantes:")
 for cle in d:
     print(cle)
 
-choix = input("Entrez le nom de la figure que vous voulez afficher : ")
+while True:
+    choix = input("Entrez le nom de la figure que vous voulez afficher : ")
 
-if choix in d:
-    fichier_x, fichier_y, couleur = d[choix]
-    tracer_figure(fichier_x, fichier_y, couleur)
-else:
-    print("La figure n'existe pas dans le dictionnaire.")
+    if choix.isdigit() and int(choix) > 0:
+        niveau_recursivite = int(choix)
+        figures_disponibles = [cle for cle in d if cle.endswith(str(niveau_recursivite))]
+        if figures_disponibles:
+            choix = random.choice(figures_disponibles)
+            fichier_x, fichier_y, couleur = d[choix]
+            tracer_figure(fichier_x, fichier_y, couleur)
+        else:
+            print("Aucune figure trouvée pour ce niveau de récursivité.")
+    
+    elif choix in d:
+        fichier_x, fichier_y, couleur = d[choix]
+        tracer_figure(fichier_x, fichier_y, couleur) 
+    else:
+        print("La figure n'existe pas dans le dictionnaire.")
 
-
-#Supression des fichiers créés après execution
-os.remove('Feigenbaum_y.txt')
-os.remove('Feigenbaum_x.txt')
-os.remove('Koch_x.txt')
-os.remove('Koch_y.txt')
-os.remove('triangle_x.txt')
-os.remove('triangle_y.txt')
+    relance = input("Souhaitez-vous afficher une nouvelle figure ? (oui/non) : ")
+    if relance.lower() != 'oui':
+        break
+    
