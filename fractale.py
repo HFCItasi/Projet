@@ -1,8 +1,118 @@
 import os
 import matplotlib.pyplot as plt
-import testFrac as fr
 import numpy as np
 
+
+
+#Fonction 1: calcul de la fractale triangle
+
+def trinity(recursivite, vertices):
+
+   if recursivite == 0:
+
+       return vertices
+
+   else:
+       midpoints = [
+
+           ((vertices[0][0] + vertices[1][0]) / 2, (vertices[0][1] + vertices[1][1]) / 2),
+
+           ((vertices[1][0] + vertices[2][0]) / 2, (vertices[1][1] + vertices[2][1]) / 2),
+
+           ((vertices[2][0] + vertices[0][0]) / 2, (vertices[2][1] + vertices[0][1]) / 2)
+
+       ]
+
+
+
+       return trinity(recursivite - 1, [vertices[0], midpoints[0], midpoints[2]]) + \
+              trinity(recursivite - 1, [midpoints[0], vertices[1], midpoints[1]]) + \
+              trinity(recursivite - 1, [midpoints[2], midpoints[1], vertices[2]])
+
+
+# #Fonction 2: calcul de la fractale de koch
+
+
+def flocon_koch(level, p1=(75, 50.5), p2=(25, 50.5)):
+    if level == 0:
+        return [p1, p2]
+    else:
+        x1, y1 = p1
+        x2, y2 = p2
+        
+        x3 = (2 * x1 + x2) / 3
+        y3 = (2 * y1 + y2) / 3
+        x5 = (x1 + 2 * x2) / 3
+        y5 = (y1 + 2 * y2) / 3
+        x4 = 0.5 * (x1 + x2) + (np.sqrt(3) / 6) * (y1 - y2)
+        y4 = 0.5 * (y1 + y2) + (np.sqrt(3) / 6) * (x2 - x1)
+
+        segments = []
+        segments.extend(flocon_koch(level - 1, p1, (x3, y3)))
+        segments.extend(flocon_koch(level - 1, (x3, y3), (x4, y4)))
+        segments.extend(flocon_koch(level - 1, (x4, y4), (x5, y5)))
+        segments.extend(flocon_koch(level - 1, (x5, y5), p2))
+        
+        return segments
+
+
+
+
+#Fonction 3 :fractale feigenbaum
+
+def fractale_feigenbaum(x, y, longueur, angle, recursivite):
+
+   if recursivite == 0:
+
+       return [(x, y)]
+
+
+
+   # Calcul des nouvelles coordonnées
+
+   x_nouveau = x + longueur * np.cos(angle)
+
+   y_nouveau = y + longueur * np.sin(angle)
+
+
+
+   # Récupération des coordonnées du point actuel
+
+   coordonnees = [(x, y), (x_nouveau, y_nouveau)]
+
+
+
+   # Appels récursifs pour les deux branches
+
+   coordonnees += fractale_feigenbaum(x_nouveau, y_nouveau, longueur / 2, angle - np.radians(45), recursivite - 1)
+
+   coordonnees += fractale_feigenbaum(x_nouveau, y_nouveau, longueur / 2, angle + np.radians(45), recursivite - 1)
+
+
+
+   return coordonnees
+
+#Fonction pour tracer les figures 
+
+def tracer_figure(fichier_x, fichier_y, couleur):
+    # Lire les coordonnées x et y depuis les fichiers
+    file_x = open(fichier_x, 'r').readlines()
+    file_y = open(fichier_y, 'r').readlines()
+
+    strx = str(file_x[0])[1:-1]
+    listx = strx.split(",")
+    listxfloat = [float(x) for x in listx]
+
+    stry = str(file_y[0])[1:-1]
+    listy = stry.split(",")
+    listyfloat = [float(y) for y in listy]
+    plt.plot(listxfloat, listyfloat, marker='o', linestyle='-', color=couleur)
+    plt.grid(True)
+    plt.show()
+
+
+#Fonction qui génère le dictionnaire en fonction du txt 
+   
 def dictionnaire(f):
     dictionnaire_figures = {}
 
@@ -21,112 +131,45 @@ def dictionnaire(f):
 
 
                 cle = f"{nom_forme} , {niveau_recursivite}" 
-                print (cle)
-                valeurs = [departx, departy, taillex, tailley, couleur, nom_forme]
+                valeurs = [departx, departy, taillex, tailley , couleur, nom_forme, niveau_recursivite]
                 dictionnaire_figures[cle] = valeurs
             else: 
                 print("Veuillez fournir un fichier avec d'avantages d'information")
     return dictionnaire_figures
 
-def tracer_figure(fichier_x, fichier_y):
+#Fonction qui permet de séparer les coordonnées x et y et la couleur : 
 
-   # Lire les coordonnées x et y depuis les fichiers
+def separer_points(liste_points):
+    
+    x_coords = []
+    y_coords = []
 
-   file_x=open(fichier_x, 'r').readlines()
+    for point in liste_points:
+        x_coords.append(point[0])
+        y_coords.append(point[1])
 
-   file_y=open(fichier_y, 'r').readlines()
-
-
-
-
-
-   strx=str(file_x[0])[1:-1]
-
+    return x_coords, y_coords
 
 
-   listx = strx.split(",")
-
-   listxfloat =[]
-
-   for x in listx:
-
-       listxfloat.append(float(x))
-
-   x_coords=listxfloat
-
-
-
-   stry=str(file_y[0])[1:-1]
-
-
-
-   listy = stry.split(",")
-
-   listyfloat =[]
-
-   for y in listy:
-
-       listyfloat.append(float(y))
-
-   y_coords=listyfloat
-
-   # Tracer la figure
-
-   plt.plot(x_coords, y_coords, marker='o', linestyle='-')
-
-   plt.title('Figure tracée à partir de fichiers de coordonnées')
-
-   plt.xlabel('Coordonnées X')
-
-   plt.ylabel('Coordonnées Y')
-
-   plt.grid(True)
-
-   plt.show()
-
-
-# def parcourir_dictionnaire(dictionnaire_figures):
-#     for cle in dictionnaire_figures.keys():
-#         valeurs = dictionnaire_figures[cle]
-#         toutpoint =[]
-#         if valeurs [5] == "triangle":
-#             toutpoint ==  fr.trinity(6, [(0, 0), (1, 0), (0.5, np.sqrt(3)/2)])
-#         elif valeurs[5] == "koch":
-#             toutpoint == fr.flocon_koch(100, 10)
-#         elif valeurs[5] == "Feigenbaum":
-#             toutpoint == fr.fractale_feigenbaum(0,0,2, 30 ,10)
-#     nom_fichier_x =  valeurs [5] +"_x.txt"
-#     nom_fichier_y =  valeurs [5] +"_y.txt"
-#     nom_fichier_x = open('nom_fichier_x','w')
-#     nom_fichier_y = open('nom_fichier_y','w')
-#     x_coords = fr.separer_points(toutpoint)[0]
-#     y_coords = fr.separer_points(toutpoint)[1]
-#     nom_fichier_x.write(str(x_coords))
-#     nom_fichier_y.write(str(y_coords))
-#     nom_fichier_x.close()
-#     nom_fichier_y.close()
-#     dictionnaire_figures[cle] = [nom_fichier_x, nom_fichier_y]
-#     return dictionnaire_figures
+#Fonction qui parcours le dictionnnaire et modifie le dictionnaire en prenant comme clé le nom et la recursivité 
+#et associe le fichier des coordonnées x,y et la couleur pour chaque figure 
 
 def parcourir_dictionnaire(dictionnaire_figures):
     for cle, valeurs in dictionnaire_figures.items():
         toutpoint = []
         if valeurs[5] == "triangle":
-            toutpoint = fr.trinity(6, [(0, 0), (1, 0), (0.5, np.sqrt(3)/2)])
-        elif valeurs[5] == "koch":
-            toutpoint = fr.flocon_koch(100, 10)
+            toutpoint = trinity(int(valeurs[6]), [(0, 0), (1, 0), (0.5, np.sqrt(3)/2)])
+        elif valeurs[5] == "Koch":
+            toutpoint = flocon_koch(int(valeurs[6]))
         elif valeurs[5] == "Feigenbaum":
-            toutpoint = fr.fractale_feigenbaum(0, 0, 2, 30, 10)
-        
+            toutpoint = fractale_feigenbaum(int(valeurs[0]), int(valeurs[1]), int(valeurs[2]), 30, int(valeurs[6]))
         nom_fichier_x = valeurs[5] + "_x.txt"
         nom_fichier_y = valeurs[5] + "_y.txt"
         with open(nom_fichier_x, 'w') as fichier_x, open(nom_fichier_y, 'w') as fichier_y:
-            x_coords, y_coords = fr.separer_points(toutpoint)
+            x_coords, y_coords = separer_points(toutpoint)
             fichier_x.write(str(x_coords))
             fichier_y.write(str(y_coords))
-        
-        # Mettre à jour les valeurs dans le dictionnaire avec les noms des fichiers
-        dictionnaire_figures[cle] = [nom_fichier_x, nom_fichier_y]
+        dictionnaire_figures[cle] = [nom_fichier_x, nom_fichier_y, valeurs[4]]
     
     return dictionnaire_figures
 
@@ -134,9 +177,25 @@ def parcourir_dictionnaire(dictionnaire_figures):
 print ("veuillez fournir le fichier d'informations")
 f = str(input("Répertoire du fichier : "))
 d = dictionnaire(f)
-print(d)
 d = parcourir_dictionnaire(d)
-# Assurez-vous que les noms de fichiers correspondent aux fichiers générés
-tracer_figure(Feigenbaum_x, Feigenbaum_y)
+
+print ("Veuillez choisir la figure que vous voulez afficher parmi les suivantes:")
+for cle in d:
+    print(cle)
+
+choix = input("Entrez le nom de la figure que vous voulez afficher : ")
+
+if choix in d:
+    fichier_x, fichier_y, couleur = d[choix]
+    tracer_figure(fichier_x, fichier_y, couleur)
+else:
+    print("La figure n'existe pas dans le dictionnaire.")
 
 
+#Supression des fichiers créés après execution
+os.remove('Feigenbaum_y.txt')
+os.remove('Feigenbaum_x.txt')
+os.remove('Koch_x.txt')
+os.remove('Koch_y.txt')
+os.remove('triangle_x.txt')
+os.remove('triangle_y.txt')
