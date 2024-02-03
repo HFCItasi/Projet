@@ -197,20 +197,22 @@ def parcourir_dictionnaire(dictionnaire_figures):
             toutpoint = flocon_koch(int(valeurs[2]), int(valeurs[6]))
         elif valeurs[5] == "Feigenbaum":
             toutpoint = fractale_feigenbaum(int(valeurs[0]), int(valeurs[1]), int(valeurs[2]), 30, int(valeurs[6]))
+
         nom_fichier_x = valeurs[5] + "_x.txt"
         nom_fichier_y = valeurs[5] + "_y.txt"
         with open(nom_fichier_x, 'w') as fichier_x, open(nom_fichier_y, 'w') as fichier_y:
             x_coords, y_coords = separer_points(toutpoint)
             fichier_x.write(str(x_coords))
             fichier_y.write(str(y_coords))
+
         dictionnaire_figures[cle] = [nom_fichier_x, nom_fichier_y, valeurs[4]]
-    
+
     return dictionnaire_figures
 
 #Supression des fichiers créés après execution
-def supprimer_fichiers(fichier_x, fichier_y):
-    os.remove(fichier_x)
-    os.remove(fichier_y)
+def supprimer_fichiers(nom_fichier_x, nom_fichier_y):
+    os.remove(nom_fichier_x)
+    os.remove(nom_fichier_y)
 
 #Prise du fichier txt avec les informations
 print ("veuillez fournir le fichier d'informations")
@@ -221,15 +223,15 @@ d = parcourir_dictionnaire(d)
 #Interactions avec l'utilisateur:
 
 print ("Veuillez choisir la figure que vous voulez afficher parmi les suivantes:")
-for cle in d:
-    print(cle)
+for cle in d: 
+ print(cle)
 
 while True:
-    choix = input("Entrez le nom de la figure que vous voulez afficher : ")
+    choix = input("Entrez le nom de la figure que vous souhaitez afficher : ")
 
     if choix.isdigit() and int(choix) > 0:
         niveau_recursivite = int(choix)
-        figures_disponibles = [cle for cle in d if cle.endswith(str(niveau_recursivite))]
+        figures_disponibles = [cle for cle in d if cle.endswith(str(niveau_recursivite))] #Permet de choisir au hasard entre deux figures qui ont le même niveau de récursivité
         if figures_disponibles:
             choix = random.choice(figures_disponibles)
             fichier_x, fichier_y, couleur = d[choix]
@@ -246,4 +248,7 @@ while True:
     relance = input("Souhaitez-vous afficher une nouvelle figure ? (oui/non) : ")
     if relance.lower() != 'oui':
         break
-    
+
+for cle, valeurs in d.items():
+ nom_fichier_x, nom_fichier_y = valeurs[0], valeurs[1]
+ supprimer_fichiers(nom_fichier_x, nom_fichier_y)
