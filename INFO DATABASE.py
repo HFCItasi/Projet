@@ -128,23 +128,20 @@ except Exception as ex:
    print("Connection could not be made due to the following error: \n", ex)
 
 
-fichier = input(str("Veuillez indiquer le chemin du fichier :"))
-athletes = 'D:/Code/Git/Projet/DATA/athletes.csv'
+coaches = 'D:/Code/Git/Projet/DATA/coaches.csv'
 create_database(newdatabase)
 # Connexion à la nouvelle database 
 new_engine = get_connection(database)
-create_table(athletes)
+create_table(coaches)
 # Chemin vers votre fichier CSV
-fichier = 'D:/Code/Git/Projet/DATA/athletes.csv'
-table_name = 'athletes'  # Nom de la table à remplir
+table_name = 'coaches'  # Nom de la table à remplir
 
 # Appeler la fonction pour remplir la table
-fill_table(fichier, table_name)
+fill_table(coaches, table_name)
 
 # finally:
 #     mysql_conn.close()
 #     engine.dispose()
 #     print(f"Disconnection to the {host} for user {user} successfull.")
-
 
 
