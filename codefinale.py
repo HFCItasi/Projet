@@ -145,8 +145,8 @@ new_engine = get_connection(newdatabase)
 
 
 # Créer et remplir la table 'coaches' dans la base JO
-coach = 'D:/Code/Git/Projet/DATA/coaches.csv'
-nom_table = 'coaches'
+coach = 'D:/Code/Git/Projet/DATA JO/coaches.csv'
+nom_table = 'coaches8'
 create_table(coach, nom_table)
 fill_table(coach, nom_table)
 
@@ -166,11 +166,11 @@ class SQLApp:
             self.logo_frame.pack(pady=10)
 
             # Chargement des logos
-            self.logo1 = Image.open("D:/Code/Git/Projet/DATA/thumbnail_logo_olympique.png") ############# Indiquer le chemin d'accès du logo telecharge######## 
+            self.logo1 = Image.open("D:/Code/Git/Projet/DATA JO/thumbnail_logo_olympique.png") ############# Indiquer le chemin d'accès du logo telecharge######## 
             self.logo1 = self.logo1.resize((300, 150))  # Redimensionnement de l'image
             self.logo_photo1 = ImageTk.PhotoImage(self.logo1)
 
-            self.logo2 = Image.open("D:/Code/Git/Projet/DATA/logoOM.png") ############# Indiquer le chemin d'accès du logo telecharge######## 
+            self.logo2 = Image.open("D:/Code/Git/Projet/DATA JO/logoOM.png") ############# Indiquer le chemin d'accès du logo telecharge######## 
             self.logo2 = self.logo2.resize((300, 150))  # Redimensionnement de l'image
             self.logo_photo2 = ImageTk.PhotoImage(self.logo2)
 
