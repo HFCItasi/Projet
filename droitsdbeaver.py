@@ -25,7 +25,7 @@ try:
     with engine.connect() as mysql_conn:
         print(f"Connection to the {host} for user {user} created successfully.")
 
-        query = "GRANT SELECT ON TABLE coaches TO PUBLIC" ###remplacer coaches par la table souhaité
+        query = "GRANT SELECT ON TABLE table TO PUBLIC" ###remplacer table par le nom de la table souhaitée
 
         #
         sql_query = sql.text(query)
@@ -42,16 +42,16 @@ finally:
 
 
 # # Fichiers CSV
-# coach = 'D:/Code/Git/Projet/DATA/coaches.csv'
-# athletes = 'D:/Code/Git/Projet/DATA/athletes.csv'
-# events = 'D:/Code/Git/Projet/DATA/events.csv'
-# medalist = 'D:/Code/Git/Projet/DATA/medallists.csv'
-# medals = 'D:/Code/Git/Projet/DATA/medals.csv'
-# medalstotal = 'D:/Code/Git/Projet/DATA/medals_total.csv'
-# nocs = 'D:/Code/Git/Projet/DATA/nocs.csv'
-# schedules = 'D:/Code/Git/Projet/DATA/schedules.csv'
-# schedules_preliminary = 'D:/Code/Git/Projet/DATA/schedules_preliminary.csv'
-# teams = 'D:/Code/Git/Projet/DATA/teams.csv'
-# technical_officials = 'D:/Code/Git/Projet/DATA/technical_officials.csv'
-# torch_route = 'D:/Code/Git/Projet/DATA/torch_route.csv'
-# venues = 'D:/Code/Git/Projet/DATA/venues.csv'
+# coach = 'D:/Code/Git/Projet/DATA JO/coaches.csv'
+# athletes = 'D:/Code/Git/Projet/DATA JO/athletes.csv'
+# events = 'D:/Code/Git/Projet/DATA JO/events.csv'
+# medalist = 'D:/Code/Git/Projet/DATA JO/medallists.csv'
+# medals = 'D:/Code/Git/Projet/DATA JO/medals.csv'
+# medalstotal = 'D:/Code/Git/Projet/DATA JO/medals_total.csv'
+# nocs = 'D:/Code/Git/Projet/DATA JO/nocs.csv'
+# schedules = 'D:/Code/Git/Projet/DATA JO/schedules.csv'
+# schedules_preliminary = 'D:/Code/Git/Projet/DATA JO/schedules_preliminary.csv'
+# teams = 'D:/Code/Git/Projet/DATA JO/teams.csv'
+# technical_officials = 'D:/Code/Git/Projet/DATA JO/technical_officials.csv'
+# torch_route = 'D:/Code/Git/Projet/DATA JO/torch_route.csv'
+# venues = 'D:/Code/Git/Projet/DATA JO/venues.csv'

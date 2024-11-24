@@ -13,14 +13,13 @@ def get_connection(db_name):
     )
 
 # Fonction pour créer la base de données
-def create_database(database):
+def create_database(newdatabase):
     """
     Prends le nom de la DB voulue et créé celle-ci
     
     :param database: Nom de la database 
     
     """
-
     try:
         # Connexion à la base par défaut 'postgres' pour créer la nouvelle base
         engine = get_connection(database)  # Connexion à la base par défaut
@@ -28,14 +27,14 @@ def create_database(database):
             print(f"Connection à {host} pour {user} réalisée avec succes.")
             
             # Créer la base de données si elle n'existe pas déjà
-            create_db_query = f"CREATE DATABASE {database}"
+            create_db_query = f"CREATE DATABASE {newdatabase};"
             conn.execution_options(isolation_level="AUTOCOMMIT").execute(sql.text(create_db_query))
-            print(f"Database {database} cree avec succes.")
+            print(f"Database {newdatabase} cree avec succes.")
     except Exception as ex:
         if 'DuplicateDatabase' not in str(ex):
             print(f"Creation de la database à échouer suite à: \n {ex}")
         else:
-            print(f"Database {database} deja existente.")
+            print(f"Database {newdatabase} deja existente.")
 
 # Fonction pour créer une table à partir d'un fichier CSV
 def create_table(chemin_csv, nom_table):
@@ -138,6 +137,7 @@ newdatabase = 'jo'
 #### Exemple ####
 
 # Créer la base de données 'jo'
+engine=get_connection(database)
 create_database(newdatabase)
 
 # Connexion à la base 'jo'
@@ -145,8 +145,9 @@ new_engine = get_connection(newdatabase)
 
 
 # Créer et remplir la table 'coaches' dans la base JO
-coach = 'D:/Code/Git/Projet/DATA JO/coaches.csv'
-nom_table = 'coaches8'
+
+coach = 'D:/Code/Git/Projet/DATA JO/coaches.csv' #Accés du fichier CSV de remplissage
+nom_table = 'coaches'  #Nom de la table que l'on souhaite crée 
 create_table(coach, nom_table)
 fill_table(coach, nom_table)
 
@@ -207,8 +208,7 @@ class SQLApp:
         self.query_menu = ttk.Combobox(self.frame, state="readonly", font=("Helvetica", 12), width=80)
         self.query_menu["values"] = [
             "SELECT * FROM {table};",
-            "DELETE FROM {table} WHERE condition;",
-            "INSERT INTO {table} (column1, column2) VALUES ('value1', 'value2');"
+            "SELECT (colonne1, colonne2) FROM {table} ORDER BY (colonne1);",
         ]
         self.query_menu.set("Requêtes prédéfinies")
         self.query_menu.pack(pady=5)
@@ -261,10 +261,9 @@ class SQLApp:
         password = ''  # Ajoutez votre mot de passe ici si nécessaire
         host = '127.0.0.1'
         port = 5434
-        database = 'jo'
 
         try:
-            engine = create_engine(f"postgresql://{user}:{password}@{host}:{port}/{database}")
+            engine = create_engine(f"postgresql://{user}:{password}@{host}:{port}/{newdatabase}")
             with engine.connect() as connection:
                 result = connection.execute(text(query))
                 df = pd.DataFrame(result.fetchall(), columns=result.keys())
