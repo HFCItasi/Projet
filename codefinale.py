@@ -103,17 +103,6 @@ def fill_table(chemin_csv, nom_table):
     except Exception as ex:
         print(f"L'insertion de la database à échouer suite à: \n {ex}")
 
-# Supprimer une base de données
-def drop_database(database):
-    engine = get_connection(database)
-    try:
-        with engine.connect() as conn:
-            drop_db_query = f"DROP DATABASE IF EXISTS {database}"
-            conn.execution_options(isolation_level="AUTOCOMMIT").execute(sql.text(drop_db_query))
-            print(f"Database '{database}' supprimée avec succes.")
-    except Exception as ex:
-        print(f"Suppression de la database échouée suite à: \n {ex}")
-
 
 def disconnect_from_database(engine):
     """
@@ -177,11 +166,11 @@ class SQLApp:
             self.logo_frame.pack(pady=10)
 
             # Chargement des logos
-            self.logo1 = Image.open("D:/Code/Git/Projet/DATA/thumbnail_logo_olympique.png") 
+            self.logo1 = Image.open("D:/Code/Git/Projet/DATA/thumbnail_logo_olympique.png") ############# Indiquer le chemin d'accès du logo telecharge######## 
             self.logo1 = self.logo1.resize((300, 150))  # Redimensionnement de l'image
             self.logo_photo1 = ImageTk.PhotoImage(self.logo1)
 
-            self.logo2 = Image.open("D:/Code/Git/Projet/DATA/logoOM.png") 
+            self.logo2 = Image.open("D:/Code/Git/Projet/DATA/logoOM.png") ############# Indiquer le chemin d'accès du logo telecharge######## 
             self.logo2 = self.logo2.resize((300, 150))  # Redimensionnement de l'image
             self.logo_photo2 = ImageTk.PhotoImage(self.logo2)
 
