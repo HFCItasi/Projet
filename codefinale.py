@@ -1,5 +1,8 @@
 import pandas as pd
-from sqlalchemy import create_engine, sql
+from sqlalchemy import create_engine, sql, text
+import tkinter as tk
+from tkinter import messagebox, scrolledtext, ttk
+from PIL import Image, ImageTk
 
 # Fonction pour obtenir une connexion à la base de données
 def get_connection(db_name):
@@ -11,35 +14,42 @@ def get_connection(db_name):
 
 # Fonction pour créer la base de données
 def create_database(database):
+    """
+    Prends le nom de la DB voulue et créé celle-ci
+    
+    :param database: Nom de la database 
+    
+    """
+
     try:
         # Connexion à la base par défaut 'postgres' pour créer la nouvelle base
         engine = get_connection(database)  # Connexion à la base par défaut
         with engine.connect() as conn:
-            print(f"Connection to {host} for user {user} created successfully.")
+            print(f"Connection à {host} pour {user} réalisée avec succes.")
             
             # Créer la base de données si elle n'existe pas déjà
             create_db_query = f"CREATE DATABASE {database}"
             conn.execution_options(isolation_level="AUTOCOMMIT").execute(sql.text(create_db_query))
-            print(f"Database {database} created successfully.")
+            print(f"Database {database} cree avec succes.")
     except Exception as ex:
         if 'DuplicateDatabase' not in str(ex):
-            print(f"Could not create database due to the following error: \n {ex}")
+            print(f"Creation de la database à échouer suite à: \n {ex}")
         else:
-            print(f"Database {database} already exists.")
+            print(f"Database {database} deja existente.")
 
 # Fonction pour créer une table à partir d'un fichier CSV
-def create_table(csv_file_path, table_name):
+def create_table(chemin_csv, nom_table):
     """
-    Crée une table PostgreSQL basée sur un fichier CSV.
+    Crée une table de DB basée sur un fichier CSV.
 
-    :param csv_file_path: Chemin vers le fichier CSV.
-    :param table_name: Nom de la table à créer.
+    :param chemin_csv: Chemin vers le fichier CSV.
+    :param nom_table: Nom de la table à créer.
 
     """
     try:
         # Lire le fichier CSV
-        df = pd.read_csv(csv_file_path, sep=';')
-        print(f"CSV file '{csv_file_path}' read successfully.")
+        df = pd.read_csv(chemin_csv, sep=';')
+        print(f" '{chemin_csv}' lu avec succes.")
 
         # Déduire les types de colonnes pour PostgreSQL
         nom_colonnes = []
@@ -57,22 +67,29 @@ def create_table(csv_file_path, table_name):
 
         # Construire la requête SQL pour créer la table
         colonne_avec_nom = ", ".join(nom_colonnes)
-        create_table_query = f"CREATE TABLE IF NOT EXISTS {table_name} ({colonne_avec_nom});"
+        create_table_query = f"CREATE TABLE IF NOT EXISTS {nom_table} ({colonne_avec_nom});"
 
         # Exécuter la requête pour créer la table
         with new_engine.connect() as conn:
             conn.execute(sql.text(create_table_query))
-            print(f"Table '{table_name}' created successfully.")
+            print(f"Table '{nom_table}' cree avec succes.")
     
     except Exception as ex:
-        print(f"Could not create table due to the following error: \n{ex}")
+        print(f"Creation de la table à échouer suite à: \n{ex}")
 
 
 
 # Fonction pour remplir une table avec des données depuis un fichier CSV
-def fill_table(csv_file_path, table_name):
-    df = pd.read_csv(csv_file_path, sep=';')
-    print(f"Reading CSV file: {csv_file_path}")
+def fill_table(chemin_csv, nom_table):
+    """
+    Remplit à partir d'un CSV une table 
+    
+    :param chemin_csv : Chemin d'accès au CSV 
+    :nom_table : nom de la table à remplir 
+
+    """
+    df = pd.read_csv(chemin_csv, sep=';')
+    print(f"Lecture du fichier CSV: {chemin_csv}")
     try:
         
         if 'current' in df.columns:
@@ -80,11 +97,11 @@ def fill_table(csv_file_path, table_name):
             df['current'] = df['current'].astype(bool).astype(int)
 
         with new_engine.connect() as conn:
-            df.to_sql(table_name, conn, if_exists='append', index=False)
-            print(f"Data inserted successfully into the table '{table_name}'.")
+            df.to_sql(nom_table, conn, if_exists='append', index=False)
+            print(f"Data inseree avec succes dans '{nom_table}'.")
 
     except Exception as ex:
-        print(f"Could not insert data due to the following error: \n {ex}")
+        print(f"L'insertion de la database à échouer suite à: \n {ex}")
 
 # Supprimer une base de données
 def drop_database(database):
@@ -93,9 +110,32 @@ def drop_database(database):
         with engine.connect() as conn:
             drop_db_query = f"DROP DATABASE IF EXISTS {database}"
             conn.execution_options(isolation_level="AUTOCOMMIT").execute(sql.text(drop_db_query))
-            print(f"Database '{database}' deleted successfully.")
+            print(f"Database '{database}' supprimée avec succes.")
     except Exception as ex:
-        print(f"Could not delete database due to the following error: \n {ex}")
+        print(f"Suppression de la database échouée suite à: \n {ex}")
+
+
+def disconnect_from_database(engine):
+    """
+    Ferme le moteur de base de données SQLAlchemy.
+
+    Args:
+        engine (Engine): Objet moteur SQLAlchemy.
+
+    Returns:
+        bool: True si la déconnexion réussit, False sinon.
+    """
+    try:
+        if engine:
+            engine.dispose()
+            print("Déconnexion réussie.")
+            return True
+        else:
+            print("Aucun moteur actif à fermer.")
+            return False
+    except Exception as e:
+        print(f"Erreur lors de la déconnexion : {e}")
+        return False
 
 # Informations de connexion à la base de données
 user = 'postgres'
@@ -105,138 +145,22 @@ port = 5434
 database = 'cinema'
 newdatabase = 'jo'
 
-# Fichiers CSV
+
+#### Exemple ####
+
+# Créer la base de données 'jo'
+create_database(newdatabase)
+
+# Connexion à la base 'jo'
+new_engine = get_connection(newdatabase)
+
+
+# Créer et remplir la table 'coaches' dans la base JO
 coach = 'D:/Code/Git/Projet/DATA/coaches.csv'
-athletes = 'D:/Code/Git/Projet/DATA/athletes.csv'
-events = 'D:/Code/Git/Projet/DATA/events.csv'
-medalist = 'D:/Code/Git/Projet/DATA/medallists.csv'
-medals = 'D:/Code/Git/Projet/DATA/medals.csv'
-medalstotal = 'D:/Code/Git/Projet/DATA/medals_total.csv'
-nocs = 'D:/Code/Git/Projet/DATA/nocs.csv'
-schedules = 'D:/Code/Git/Projet/DATA/schedules.csv'
-schedules_preliminary = 'D:/Code/Git/Projet/DATA/schedules_preliminary.csv'
-teams = 'D:/Code/Git/Projet/DATA/teams.csv'
-technical_officials = 'D:/Code/Git/Projet/DATA/technical_officials.csv'
-torch_route = 'D:/Code/Git/Projet/DATA/torch_route.csv'
-venues = 'D:/Code/Git/Projet/DATA/venues.csv'
+nom_table = 'coaches'
+create_table(coach, nom_table)
+fill_table(coach, nom_table)
 
-# # Créer la base de données 'jo'
-# create_database(newdatabase)
-
-# # Connexion à la base 'jo'
-# new_engine = get_connection(newdatabase)
-
-# # Créer et remplir la table 'coaches'
-# table_name = 'venues'
-# create_table(venues, table_name)
-# fill_table(venues, table_name)
-
-
- #Installez:
-
-
-import tkinter as tk
-from tkinter import messagebox, scrolledtext
-import pandas as pd
-from PIL import Image, ImageTk
-from sqlalchemy import create_engine, text
-
-# class SQLApp:
-#     def __init__(self, root):
-#         self.root = root
-#         self.root.title("Information JO")
-#         self.root.geometry("1000x800")  # Fenêtre agrandie
-#         self.root.configure(bg="#ffffff")  # Couleur de fond
-
-#         # # Chargement et affichage des logos
-#         # try:
-#         #     # Création d'un cadre pour les logos
-#         #     self.logo_frame = tk.Frame(root, bg="#ffffff")
-#         #     self.logo_frame.pack(pady=10)
-
-#         #     # Chargement des logos
-#         #     self.logo1 = Image.open("L:\_Users\Téléchargements\thumbnail_logo_olympique")
-#         #     self.logo1 = self.logo1.resize((300, 150))  # Redimensionnement de l'image
-#         #     self.logo_photo1 = ImageTk.PhotoImage(self.logo1)
-
-#         #     self.logo2 = Image.open("L:\_Users\Téléchargements\logoOM")
-#         #     self.logo2 = self.logo2.resize((300, 150))  # Redimensionnement de l'image
-#         #     self.logo_photo2 = ImageTk.PhotoImage(self.logo2)
-
-#         #     # Positionnement des logos
-#         #     self.logo_label2 = tk.Label(self.logo_frame, image=self.logo_photo2, bg="#ffffff")
-#         #     self.logo_label2.pack(side=tk.LEFT, padx=10)
-
-#         #     self.logo_label1 = tk.Label(self.logo_frame, image=self.logo_photo1, bg="#ffffff")
-#         #     self.logo_label1.pack(side=tk.LEFT, padx=10)
-
-#         # except FileNotFoundError:
-#         #     messagebox.showerror("Erreur", "Logo non trouvé. Veuillez vérifier le chemin.")
-#         #     self.root.destroy()
-
-#         # Cadre principal pour ajouter des contours
-#         self.frame = tk.Frame(root, bg="#f0f0f0", bd=5, relief=tk.RAISED)
-#         self.frame.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
-
-#         # Zone de texte pour la requête
-#         self.query_label = tk.Label(self.frame, text="Entrez votre requête SQL:", font=("Helvetica", 14), bg="#f0f0f0")
-#         self.query_label.pack(pady=10)
-
-#         self.query_text = scrolledtext.ScrolledText(self.frame, wrap=tk.WORD, height=10, font=("Helvetica", 12), bg="#ffffff", fg="#333333", insertbackground='black')
-#         self.query_text.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
-
-#         # Bouton pour exécuter la requête
-#         self.execute_button = tk.Button(self.frame, text="Exécuter", command=self.execute_query, font=("Helvetica", 14), bg="#ffcc00", fg="black", activebackground="#e6b800")
-#         self.execute_button.pack(pady=5)
-
-#         # Zone de texte pour afficher les résultats
-#         self.result_label = tk.Label(self.frame, text="Résultats:", font=("Helvetica", 14), bg="#f0f0f0")
-#         self.result_label.pack(pady=10)
-
-#         self.result_text = scrolledtext.ScrolledText(self.frame, wrap=tk.WORD, height=10, font=("Helvetica", 12), bg="#ffffff", fg="#333333", insertbackground='black')
-#         self.result_text.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
-
-#     def execute_query(self):
-#         query = self.query_text.get("1.0", tk.END).strip()
-#         if not query:
-#             messagebox.showwarning("Avertissement", "Veuillez entrer une requête SQL.")
-#             return
-
-#         # Informations de connexion à la base de données
-#         user = 'postgres'
-#         password = ''  # Ajoutez votre mot de passe ici si nécessaire
-#         host = '127.0.0.1'
-#         port = 5434
-#         database = 'jo'
-
-#         # Connexion à la base de données
-#         try:
-#             engine = create_engine(f"postgresql://{user}:{password}@{host}:{port}/{database}")
-#             with engine.connect() as connection:
-#                 # Utilisation de text() pour les requêtes textuelles
-#                 result = connection.execute(text(query))
-#                 df = pd.DataFrame(result.fetchall(), columns=result.keys())  # Convertir les résultats en DataFrame
-
-#             # Affichage des résultats
-#             self.result_text.delete("1.0", tk.END)  # Efface le texte précédent
-#             self.result_text.insert(tk.END, df.to_string(index=False))
-
-#         except Exception as e:
-#             messagebox.showerror("Erreur", f"Erreur lors de l'exécution de la requête:\n{e}")
-
-# if __name__ == "__main__":
-#     root = tk.Tk()
-#     app = SQLApp(root)
-#     root.mainloop()
-import tkinter as tk
-from tkinter import messagebox, scrolledtext, ttk
-import pandas as pd
-from sqlalchemy import create_engine, text
-
-import tkinter as tk
-from tkinter import messagebox, scrolledtext, ttk
-import pandas as pd
-from sqlalchemy import create_engine, text
 
 
 class SQLApp:
@@ -245,6 +169,32 @@ class SQLApp:
         self.root.title("Database Jeux Olympiques de Paris 2024")
         self.root.geometry("1200x800")
         self.root.configure(bg="#ffffff")
+
+        # Chargement et affichage des logos
+        try:
+            # Création d'un cadre pour les logos
+            self.logo_frame = tk.Frame(root, bg="#ffffff")
+            self.logo_frame.pack(pady=10)
+
+            # Chargement des logos
+            self.logo1 = Image.open("D:/Code/Git/Projet/DATA/thumbnail_logo_olympique.png") 
+            self.logo1 = self.logo1.resize((300, 150))  # Redimensionnement de l'image
+            self.logo_photo1 = ImageTk.PhotoImage(self.logo1)
+
+            self.logo2 = Image.open("D:/Code/Git/Projet/DATA/logoOM.png") 
+            self.logo2 = self.logo2.resize((300, 150))  # Redimensionnement de l'image
+            self.logo_photo2 = ImageTk.PhotoImage(self.logo2)
+
+            # Positionnement des logos
+            self.logo_label2 = tk.Label(self.logo_frame, image=self.logo_photo2, bg="#ffffff")
+            self.logo_label2.pack(side=tk.LEFT, padx=10)
+
+            self.logo_label1 = tk.Label(self.logo_frame, image=self.logo_photo1, bg="#ffffff")
+            self.logo_label1.pack(side=tk.LEFT, padx=10)
+
+        except FileNotFoundError:
+            messagebox.showerror("Erreur", "Logo non trouvé. Veuillez vérifier le chemin.")
+            self.root.destroy()
 
         # Cadre principal
         self.frame = tk.Frame(root, bg="#f0f0f0", bd=5, relief=tk.RAISED)
@@ -336,33 +286,28 @@ class SQLApp:
         except Exception as e:
             messagebox.showerror("Erreur", f"Erreur lors de l'exécution de la requête :\n{e}")
 
-def update_result_tree(self, df):
-    """Met à jour le tableau des résultats avec un DataFrame."""
-    self.result_tree.delete(*self.result_tree.get_children())  # Efface les anciennes données
-    
-    # Configuration des colonnes
-    self.result_tree["columns"] = list(df.columns)
-    self.result_tree["show"] = "headings"
+    def update_result_tree(self, df):
+        """Met à jour le tableau des résultats avec un DataFrame."""
+        self.result_tree.delete(*self.result_tree.get_children())  # Efface les anciennes données
+        self.result_tree["columns"] = list(df.columns)
+        self.result_tree["show"] = "headings"
 
-    # Définir une largeur minimale pour chaque colonne
-    for col in df.columns:
-        self.result_tree.heading(col, text=col)
-        self.result_tree.column(col, anchor="center", width=150)  # Largeur minimale pour chaque colonne
+        for col in df.columns:
+            self.result_tree.heading(col, text=col)
+            self.result_tree.column(col, anchor="center", width=150)  # Largeur fixe pour les colonnes
 
-    # Insertion des données ligne par ligne
-    for index, row in df.iterrows():
-        self.result_tree.insert("", "end", values=list(row))
+        for index, row in df.iterrows():
+            self.result_tree.insert("", "end", values=list(row))
 
-    # Activer la barre de défilement horizontale
-    self.result_tree.update_idletasks()  # Met à jour les dimensions
-    total_width = sum(self.result_tree.column(col, option="width") for col in df.columns)
-    self.result_frame.configure(width=total_width)  # Ajuster la largeur du cadre pour le défilement
-
-
-
+    def clear_results(self):
+        """Efface les résultats affichés."""
+        self.result_tree.delete(*self.result_tree.get_children())
 
 
 if __name__ == "__main__":
     root = tk.Tk()
     app = SQLApp(root)
     root.mainloop()
+
+#Déconnexion de l'utilisateur
+disconect = disconnect_from_database(new_engine)
