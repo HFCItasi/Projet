@@ -89,7 +89,7 @@ GUI;Guinea;Guinea;guinea;P
 GUM;Guam;Guam;guam;P
 GUY;Guyana;Guyana;guyana;P
 HAI;Haiti;Haiti;haiti;P
-HKG;"Hong Kong; China";"Hong Kong; China";hong-kong--china;P
+HKG;Hong Kong, China;Hong Kong, China;hong-kong--china;P
 HON;Honduras;Honduras;honduras;P
 HUN;Hungary;Hungary;hungary;P
 INA;Indonesia;Indonesia;indonesia;P
@@ -101,9 +101,9 @@ IRL;Ireland;Ireland;ireland;P
 IRQ;Iraq;Iraq;iraq;P
 ISL;Iceland;Iceland;iceland;P
 ISR;Israel;Israel;israel;P
-ISV;"Virgin Islands; US";"Virgin Islands; US";virgin-islands--us;P
+ISV;Virgin Islands, US;Virgin Islands, US;virgin-islands--us;P
 ITA;Italy;Italy;italy;P
-IVB;"Virgin Islands; B";"Virgin Islands; British";virgin-islands--b;P
+IVB;Virgin Islands, B;Virgin Islands, British;virgin-islands--b;P
 JAM;Jamaica;Jamaica;jamaica;P
 JOR;Jordan;Jordan;jordan;P
 JPN;Japan;Japan;japan;P

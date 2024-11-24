@@ -2,22 +2,22 @@ code;current;name;gender;function;category;organisation_code;organisation;organi
 1536406;True;FRATINI Elisabetta;Female;Referee;J;ITA;Italy;Italy;['Judo'];
 1550583;True;ILIC Corina;Female;Referee;J;CRO;Croatia;Croatia;['Judo'];
 1550593;True;MAAFI Ziad;Male;Referee;J;ALG;Algeria;Algeria;['Judo'];
-1550642;True;FUMEA Maria;Female;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1550643;True;LEUNG Li Li;Female;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1550645;True;MIAO Zhongyi;Male;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1550646;True;VALENZO AOKI Naomi Chieko;Female;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1550647;True;AL HITMI Ali;Male;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1550648;True;AL TABBAA Mouhammed Youssef;Male;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1550649;True;CELEN Suat;Male;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1550650;True;ESAWY Ehab;Male;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1550651;True;YAGI KITAGAWA Tammy;Female;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1550652;True;VALERIO Rogerio;Male;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1550653;True;MOWBRAY Denis;Male;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1550654;True;PEGAN Aljaz;Male;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1550655;True;PENICHE FRANCO Alejandro;Male;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1550656;True;PERRIERE Charles;Male;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1550657;True;TAEYMANS Rosy;Female;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1550662;True;ACOSTA RODRIGUEZ Laura Patricia;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Rhythmic Gymnastics'];1964-11-17
+1550642;True;FUMEA Maria;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1550643;True;LEUNG Li Li;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1550645;True;MIAO Zhongyi;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1550646;True;VALENZO AOKI Naomi Chieko;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1550647;True;AL HITMI Ali;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1550648;True;AL TABBAA Mouhammed Youssef;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1550649;True;CELEN Suat;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1550650;True;ESAWY Ehab;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1550651;True;YAGI KITAGAWA Tammy;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1550652;True;VALERIO Rogerio;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1550653;True;MOWBRAY Denis;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1550654;True;PEGAN Aljaz;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1550655;True;PENICHE FRANCO Alejandro;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1550656;True;PERRIERE Charles;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1550657;True;TAEYMANS Rosy;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1550662;True;ACOSTA RODRIGUEZ Laura Patricia;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Rhythmic Gymnastics'];17/11/1964
 1550672;True;BEDOSHVILI Eliso;Female;Judge;J;GEO;Georgia;Georgia;['Rhythmic Gymnastics'];
 1550674;True;BOJAKOWSKI Konrad;Male;Judge;J;POL;Poland;Poland;['Trampoline Gymnastics'];
 1550675;True;BOUROVA Roumiana;Female;Judge;J;BEL;Belgium;Belgium;['Rhythmic Gymnastics'];
@@ -72,10 +72,10 @@ code;current;name;gender;function;category;organisation_code;organisation;organi
 1566488;True;SCOTT Luke;Male;Jury Member;J;RSA;South Africa;South Africa;['Sailing'];
 1566489;True;STANIKIC Mina;Female;Jury Member;J;SRB;Serbia;Serbia;['Sailing'];
 1570413;True;D'URBANO Francesco Jacopo;Male;Judge;J;WSK;World Skate;World Skate;['Skateboarding'];
-1571122;True;ALSHATHRI A Rahman;Male;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1571123;True;KIM Nellia;Female;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1571124;True;TITOV Vasilii;Male;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1571143;True;ALIPRANDI Elena;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Rhythmic Gymnastics'];1975-04-09
+1571122;True;ALSHATHRI A Rahman;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1571123;True;KIM Nellia;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1571124;True;TITOV Vasilii;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1571143;True;ALIPRANDI Elena;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Rhythmic Gymnastics'];09/04/1975
 1571146;True;DRAGAS Spela;Female;Judge;J;SLO;Slovenia;Slovenia;['Rhythmic Gymnastics'];
 1571149;True;IEROMINA Nataliia;Female;Judge;J;UKR;Ukraine;Ukraine;['Rhythmic Gymnastics'];
 1893012;True;CHIARI Roberto;Male;Referee;J;FIBA;FIBA;International Basketball Federation;['Basketball'];
@@ -194,10 +194,10 @@ code;current;name;gender;function;category;organisation_code;organisation;organi
 1934504;True;SCHRODER Laura;Female;Judge;J;GER;Germany;Germany;['Skateboarding'];
 1937668;True;KONSTANTINOU Loukas;Male;Referee;J;GRE;Greece;Greece;['Wrestling'];
 1937682;True;GYARMATI Ferenc;Male;Referee;J;ROU;Romania;Romania;['Wrestling'];
-1937701;True;MESSER KERSTING Thomas;Male;Referee;J;GER;Germany;Germany;"['3x3 Basketball'; 'Basketball']";
+1937701;True;MESSER KERSTING Thomas;Male;Referee;J;GER;Germany;Germany;['3x3 Basketball', 'Basketball'];
 1937705;True;SERNEK Stanislav;Male;Referee;J;SLO;Slovenia;Slovenia;['Wrestling'];
 1937758;True;BERTRAND Eric;Male;Referee;J;SUI;Switzerland;Switzerland;['3x3 Basketball'];
-1937785;True;HO Edmond;Male;Referee;J;HKG;"Hong Kong; China";"Hong Kong; China";['3x3 Basketball'];
+1937785;True;HO Edmond;Male;Referee;J;HKG;Hong Kong, China;Hong Kong, China;['3x3 Basketball'];
 1937791;True;JANG Tsong Rong;Male;Referee;J;TPE;Chinese Taipei;Chinese Taipei;['Wrestling'];
 1937815;True;MICHAELIDES Markos-Elias;Male;Referee;J;SUI;Switzerland;Switzerland;['3x3 Basketball'];
 1937848;True;MALISZEWSKI Marek;Male;Referee;J;POL;Poland;Poland;['3x3 Basketball'];
@@ -316,7 +316,7 @@ code;current;name;gender;function;category;organisation_code;organisation;organi
 1969271;True;GONZALEZ Francisco;Male;Referee;J;URU;Uruguay;Uruguay;['Rugby Sevens'];
 1969272;True;WATTERS Phil;Male;Referee;J;GBR;Great Britain;Great Britain;['Rugby Sevens'];
 1969273;True;CHAUDHRY Talal-Azmat;Male;Referee;J;CAN;Canada;Canada;['Rugby Sevens'];
-1969274;True;CHAN Craig;Male;Referee;J;HKG;"Hong Kong; China";"Hong Kong; China";['Rugby Sevens'];
+1969274;True;CHAN Craig;Male;Referee;J;HKG;Hong Kong, China;Hong Kong, China;['Rugby Sevens'];
 1969278;True;BROWN Finlay;Male;Referee;J;GBR;Great Britain;Great Britain;['Rugby Sevens'];
 1969280;True;ROCHE Kat;Female;Referee;J;USA;United States;United States of America;['Rugby Sevens'];
 1969282;True;ARCHER Jamie;Male;Referee;J;WR;World Rugby;World Rugby;['Rugby Sevens'];
@@ -363,12 +363,12 @@ code;current;name;gender;function;category;organisation_code;organisation;organi
 1990720;True;LUZANOV Pavel;Male;Referee;J;KGZ;Kyrgyzstan;Kyrgyzstan;['Football'];
 1990721;True;NASSAR Khaled;Male;Referee;J;EGY;Egypt;Egypt;['Football'];
 1990736;True;DACOSTA Latoya;Female;Referee;J;JAM;Jamaica;Jamaica;['Football'];
-1990795;True;MUKAI Naoko;Female;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1990866;True;CACHEMAILLE Celine;Female;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1990867;True;DETRAZ Stephane;Male;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1990868;True;MARTINET Sylvie;Female;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1990869;True;VINAGRE Rui;Male;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
-1990870;True;TERRIER Zina;Female;Judge;J;FIG;FIG;International Gymnastics Federation;"['Artistic Gymnastics'; 'Rhythmic Gymnastics'; 'Trampoline Gymnastics']";
+1990795;True;MUKAI Naoko;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1990866;True;CACHEMAILLE Celine;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1990867;True;DETRAZ Stephane;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1990868;True;MARTINET Sylvie;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1990869;True;VINAGRE Rui;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
+1990870;True;TERRIER Zina;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics', 'Rhythmic Gymnastics', 'Trampoline Gymnastics'];
 1991692;True;SEN Levent;Male;Referee;J;TUR;Türkiye;Türkiye;['Wrestling'];
 1991697;True;HALAWA Sherif;Male;Referee;J;EGY;Egypt;Egypt;['Wrestling'];
 1991704;True;TRAI Belkacem;Male;Referee;J;ALG;Algeria;Algeria;['Wrestling'];
@@ -588,13 +588,13 @@ code;current;name;gender;function;category;organisation_code;organisation;organi
 2090832;True;KNOESTER Carlo;Male;Referee;J;AUS;Australia;Australia;['Judo'];
 2092195;True;MASHBAT Bukhbat;Male;Referee;J;MGL;Mongolia;Mongolia;['Judo'];
 2093293;True;RAKHLIN Evgeny;Male;Referee;J;IJF;IJF;International Judo Federation;['Judo'];
-2279615;True;GERRARD David;Male;Referee;J;WAQU;World Aquatics;World Aquatics;"['Diving'; 'Marathon Swimming'; 'Artistic Swimming'; 'Water Polo']";
-2279688;True;MILLER James;Male;Referee;J;WAQU;World Aquatics;World Aquatics;"['Diving'; 'Marathon Swimming'; 'Artistic Swimming'; 'Water Polo']";
-2279694;True;MERKELY Bela Peter;Male;Referee;J;WAQU;World Aquatics;World Aquatics;"['Diving'; 'Marathon Swimming'; 'Artistic Swimming'; 'Water Polo']";
-2279704;True;ELHABIBY Riham;Female;Referee;J;WAQU;World Aquatics;World Aquatics;"['Diving'; 'Marathon Swimming'; 'Artistic Swimming'; 'Water Polo']";
-2279707;True;van den HOOGENBAND Cees;Male;Referee;J;WAQU;World Aquatics;World Aquatics;"['Diving'; 'Marathon Swimming'; 'Artistic Swimming'; 'Water Polo']";
-2279712;True;SHERAFAT VAZIRI Arash;Male;Referee;J;WAQU;World Aquatics;World Aquatics;"['Diving'; 'Marathon Swimming'; 'Artistic Swimming'; 'Water Polo']";
-2279716;True;WINGFIELD WILLIAMS Kristin;Female;Referee;J;WAQU;World Aquatics;World Aquatics;"['Diving'; 'Marathon Swimming'; 'Artistic Swimming'; 'Water Polo']";
+2279615;True;GERRARD David;Male;Referee;J;WAQU;World Aquatics;World Aquatics;['Diving', 'Marathon Swimming', 'Artistic Swimming', 'Water Polo'];
+2279688;True;MILLER James;Male;Referee;J;WAQU;World Aquatics;World Aquatics;['Diving', 'Marathon Swimming', 'Artistic Swimming', 'Water Polo'];
+2279694;True;MERKELY Bela Peter;Male;Referee;J;WAQU;World Aquatics;World Aquatics;['Diving', 'Marathon Swimming', 'Artistic Swimming', 'Water Polo'];
+2279704;True;ELHABIBY Riham;Female;Referee;J;WAQU;World Aquatics;World Aquatics;['Diving', 'Marathon Swimming', 'Artistic Swimming', 'Water Polo'];
+2279707;True;van den HOOGENBAND Cees;Male;Referee;J;WAQU;World Aquatics;World Aquatics;['Diving', 'Marathon Swimming', 'Artistic Swimming', 'Water Polo'];
+2279712;True;SHERAFAT VAZIRI Arash;Male;Referee;J;WAQU;World Aquatics;World Aquatics;['Diving', 'Marathon Swimming', 'Artistic Swimming', 'Water Polo'];
+2279716;True;WINGFIELD WILLIAMS Kristin;Female;Referee;J;WAQU;World Aquatics;World Aquatics;['Diving', 'Marathon Swimming', 'Artistic Swimming', 'Water Polo'];
 2279831;True;ZHAO Qi;Male;Referee;J;WAQU;World Aquatics;World Aquatics;['Water Polo'];
 2279833;True;COMPOIS Benedicte;Female;Referee;J;WAQU;World Aquatics;World Aquatics;['Marathon Swimming'];
 2279834;True;CIRIC Mihajlo;Male;Referee;J;WAQU;World Aquatics;World Aquatics;['Water Polo'];
@@ -627,7 +627,7 @@ code;current;name;gender;function;category;organisation_code;organisation;organi
 2279875;True;REZVANI Mohsen;Male;Referee;J;WAQU;World Aquatics;World Aquatics;['Water Polo'];
 2279876;True;CAMERON Don;Male;Referee;J;WAQU;World Aquatics;World Aquatics;['Water Polo'];
 2279877;True;BROOKER Eric;Male;Judge;J;AUS;Australia;Australia;['Diving'];
-2279878;True;GUO Jingjing;Female;Judge;J;HKG;"Hong Kong; China";"Hong Kong; China";['Diving'];
+2279878;True;GUO Jingjing;Female;Judge;J;HKG;Hong Kong, China;Hong Kong, China;['Diving'];
 2279879;True;BOGOMILOVA Tanya;Female;Referee;J;WAQU;World Aquatics;World Aquatics;['Marathon Swimming'];
 2279880;True;FARID Hadi;Male;Referee;J;WAQU;World Aquatics;World Aquatics;['Water Polo'];
 2279881;True;KOZOMPOLI Stavroula;Female;Referee;J;WAQU;World Aquatics;World Aquatics;['Water Polo'];
@@ -824,27 +824,27 @@ code;current;name;gender;function;category;organisation_code;organisation;organi
 2490727;True;LAPLANCHE Emilie;Female;Referee;J;IJF;IJF;International Judo Federation;['Judo'];
 2490728;True;PHAM Huu Hanh;Male;Referee;J;IJF;IJF;International Judo Federation;['Judo'];
 2490729;True;GORGETTE Julien;Male;Referee;J;IJF;IJF;International Judo Federation;['Judo'];
-2490851;True;le GALLO Maxime;Male;Judge;J;FRA;France;France;['Trampoline Gymnastics'];1971-03-10
-2490853;True;LAVERGNE Lilian;Male;Judge;J;FRA;France;France;['Trampoline Gymnastics'];1975-08-20
-2490854;True;CLOUD Cyril;Male;Judge;J;FRA;France;France;['Trampoline Gymnastics'];1974-01-22
-2490855;True;HEBANT Valerie;Female;Judge;J;FRA;France;France;['Trampoline Gymnastics'];1969-11-13
-2490856;True;BOURGIT Carole;Female;Judge;J;FRA;France;France;['Trampoline Gymnastics'];1974-11-09
-2490861;True;DESPORTE Laurent;Male;Judge;J;FRA;France;France;['Artistic Gymnastics'];1975-02-06
+2490851;True;le GALLO Maxime;Male;Judge;J;FRA;France;France;['Trampoline Gymnastics'];10/03/1971
+2490853;True;LAVERGNE Lilian;Male;Judge;J;FRA;France;France;['Trampoline Gymnastics'];20/08/1975
+2490854;True;CLOUD Cyril;Male;Judge;J;FRA;France;France;['Trampoline Gymnastics'];22/01/1974
+2490855;True;HEBANT Valerie;Female;Judge;J;FRA;France;France;['Trampoline Gymnastics'];13/11/1969
+2490856;True;BOURGIT Carole;Female;Judge;J;FRA;France;France;['Trampoline Gymnastics'];09/11/1974
+2490861;True;DESPORTE Laurent;Male;Judge;J;FRA;France;France;['Artistic Gymnastics'];06/02/1975
 2490864;True;de CARVALHO Sarah;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics'];
 2490876;True;BUYS Mickael;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics'];
-2490881;True;GAGNIERE Thomas;Male;Judge;J;FRA;France;France;['Artistic Gymnastics'];1986-01-28
+2490881;True;GAGNIERE Thomas;Male;Judge;J;FRA;France;France;['Artistic Gymnastics'];28/01/1986
 2490887;True;MEREL Erwan;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics'];
-2490891;True;de COSSIO Isabelle;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];1964-12-01
-2490892;True;ANDRIESSE Anne-Sophie;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];1971-03-23
-2490893;True;GARBIN Amandine;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];1977-02-05
+2490891;True;de COSSIO Isabelle;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];01/12/1964
+2490892;True;ANDRIESSE Anne-Sophie;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];23/03/1971
+2490893;True;GARBIN Amandine;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];05/02/1977
 2490894;True;DROUARD Benedite;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Rhythmic Gymnastics'];
 2490895;True;BAREL Anne Valerie;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Rhythmic Gymnastics'];
-2490896;True;LAUTH Dominique;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];1951-12-04
-2490897;True;LICHTLE Agnes;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];1959-05-08
-2490898;True;MARTEL Camille;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];1993-10-01
-2490899;True;ROBIN Stephanie;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];1974-10-25
-2490900;True;ROUSSOT Maud;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];1979-10-15
-2490901;True;SALINIER Camille;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];1988-05-26
+2490896;True;LAUTH Dominique;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];04/12/1951
+2490897;True;LICHTLE Agnes;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];08/05/1959
+2490898;True;MARTEL Camille;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];01/10/1993
+2490899;True;ROBIN Stephanie;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];25/10/1974
+2490900;True;ROUSSOT Maud;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];15/10/1979
+2490901;True;SALINIER Camille;Female;Judge;J;FRA;France;France;['Rhythmic Gymnastics'];26/05/1988
 2490916;True;VERBOOM Jef;Male;Judge;J;UCI;UCI;Union Cycliste Internationale;['Cycling BMX Freestyle'];
 2490918;True;ROLHION Olivier;Male;Judge;J;UCI;UCI;Union Cycliste Internationale;['Cycling BMX Freestyle'];
 2490919;True;ADRIX Remi;Male;Judge;J;UCI;UCI;Union Cycliste Internationale;['Cycling BMX Freestyle'];
@@ -968,7 +968,7 @@ code;current;name;gender;function;category;organisation_code;organisation;organi
 2876696;True;SVYATOCHA Boris;Male;Judge;J;PBU;PBU;Paris 2024 Boxing Unit;['Boxing'];
 2973407;True;VALENZUELA GOMEZ Cesar Fernando;Male;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics'];
 2973413;True;PALAMARA Ioulia;Female;Judge;J;FIG;FIG;International Gymnastics Federation;['Artistic Gymnastics'];
-2973422;True;HUNT Caroline;Female;Judge;J;USA;United States;United States of America;['Rhythmic Gymnastics'];1978-02-16
+2973422;True;HUNT Caroline;Female;Judge;J;USA;United States;United States of America;['Rhythmic Gymnastics'];16/02/1978
 3002003;True;BAKE Giovanni;Male;Referee;J;RSA;South Africa;South Africa;['Beach Volleyball'];
 3047340;True;PAVICEVIC Ivan;Male;Referee;J;MNE;Montenegro;Montenegro;['Handball'];
 3047342;True;BELKHIRI Youcef;Male;Referee;J;ALG;Algeria;Algeria;['Handball'];

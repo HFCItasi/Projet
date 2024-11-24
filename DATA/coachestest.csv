@@ -478,7 +478,7 @@ code;current;name;gender;function;category;country_code;country;country_long;dis
 1927873;True;LARHOLM Erik Jonas;Male;Assistant Coach;C;KOR;Korea;Republic of Korea;Handball;Women;25/01/1981
 1927879;True;RADIC Vanja;Female;Assistant Coach;C;KOR;Korea;Republic of Korea;Handball;Women;06/05/1983
 1927880;True;SIGNELL Kurt Henrik;Male;Head Coach;C;KOR;Korea;Republic of Korea;Handball;Women;02/01/1976
-1927972;True;AGAFONTSEV Sergiy;Male;Coach;C;HKG;Hong Kong, China;Hong Kong, China;Artistic Gymnastics;;07/07/1970
+"1927972,True,AGAFONTSEV Sergiy,Male,Coach,C,HKG,""Hong Kong, China"",""Hong Kong, China"",Artistic Gymnastics,,1970-07-07";;;;;;;;;;;
 1928060;True;KRCE Lucijan;Male;Coach;C;CRO;Croatia;Croatia;Artistic Gymnastics;;30/01/1975
 1928061;True;MADAREVIC Vladimir;Male;Coach;C;CRO;Croatia;Croatia;Artistic Gymnastics;;17/08/1972
 1928154;True;MWAPE Bruce;Male;Head Coach;C;ZAM;Zambia;Zambia;Football;Women;26/10/1959
@@ -794,7 +794,7 @@ code;current;name;gender;function;category;country_code;country;country_long;dis
 1961912;True;FULI Saiasi;Male;Head Coach;C;FIJ;Fiji;Fiji;Rugby Sevens;Women;16/03/1978
 1962265;True;TOPPING James;Male;Head Coach;C;IRL;Ireland;Ireland;Rugby Sevens;Men;18/12/1974
 1962452;True;TEMPLE-JONES Allan;Male;Head Coach;C;IRL;Ireland;Ireland;Rugby Sevens;Women;23/01/1981
-1962481;True;WONG Ka Wing;Male;Coach;C;HKG;Hong Kong, China;Hong Kong, China;Taekwondo;;06/08/1974
+"1962481,True,WONG Ka Wing,Male,Coach,C,HKG,""Hong Kong, China"",""Hong Kong, China"",Taekwondo,,1974-08-06";;;;;;;;;;;
 1963019;True;MICALE Rogerio;Male;Head Coach;C;EGY;Egypt;Egypt;Football;Men;28/03/1969
 1963171;True;LERGA Javier;Male;Assistant Coach;C;ESP;Spain;Spain;Football;;10/08/1979
 1963174;True;SANCHEZ Carlos;Male;Goalkeeper Coach;C;ESP;Spain;Spain;Football;;19/01/1978
