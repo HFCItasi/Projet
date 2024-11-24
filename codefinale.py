@@ -275,7 +275,7 @@ class SQLApp:
             messagebox.showerror("Erreur", f"Erreur lors de l'exécution de la requête :\n{e}")
 
     def update_result_tree(self, df):
-        """Met à jour le tableau des résultats avec un DataFrame."""
+        """Met à jour le tableau des résultats."""
         self.result_tree.delete(*self.result_tree.get_children())  # Efface les anciennes données
         self.result_tree["columns"] = list(df.columns)
         self.result_tree["show"] = "headings"
