@@ -1,0 +1,188 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Vélos du monde</title>
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+            <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+            <style>
+                html, body {
+                    font-family: 'Poppins', sans-serif;
+                    height: 100%;  
+                    margin: 0;     
+                    padding: 0;    
+                }
+
+                
+                .background {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: url('https://images.frandroid.com/wp-content/uploads/2024/04/velo-electrique-libre-service-lime-paris.jpg') no-repeat center center fixed;
+                    background-size: cover;
+                    filter: brightness(50%); 
+                    z-index: -1;
+                }
+
+                header {
+                    background: rgba(0, 0, 0, 0.7);
+                    padding: 40px;
+                    color: white;
+                    text-align: center;
+                    position: relative;
+                    z-index: 1;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                }
+                h1 {
+                    margin: 0;
+                    font-size: 2.5rem;
+                    font-weight: 600;
+                }
+
+                main {
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-start;
+                    width: 100%;
+                    margin-top: 15px;  
+                    flex-direction: column;
+                    align-items: center; 
+                }
+
+                #map {
+                    height: 500px;  
+                    width: 100%;
+                    max-width: 1000px;  
+                    border: 2px solid #00af26;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                    z-index: 1;
+                }
+
+                button {
+                    display: block;
+                    font-family: 'Poppins', sans-serif;
+                    margin-top: 20px; 
+                    padding: 10px 20px;
+                    font-size: 1rem;
+                    background-color: #000000;
+                    box-shadow: 0 4px 8px rgba(10, 182, 7, 0.701);
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    z-index: 2;
+                    transition: background-color 0.3s ease, transform 0.3s ease; 
+                }
+
+                /* Effet hover sur le bouton */
+                button:hover {
+                    background-color: #25b32c; 
+                    transform: scale(1.05);     
+                }
+
+                a {
+                    text-decoration: none;
+                    color: #ffffff;
+                    font-weight: 600;
+                    font-size: 1.2rem;
+                    display: block;
+                    padding: 8px 16px;
+                    border-radius: 8px;
+                    transition: 0.3s ease-in-out;
+                }
+
+                a:hover {
+                    background-color: #25b32c;
+                    color: white;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="background"></div>  
+            <header>
+                <h1>Stations de vélos en libre service à {{ ville }}</h1>
+            </header>
+            <main>
+                <div id="map"></div>
+                <button id="calculate">Calculer la station la plus proche</button>
+            </main>
+            <script>
+                // Initialisation de la carte
+                var map = L.map('map').setView([{{ city_coords.lat }}, {{ city_coords.lng }}], 13);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19
+                }).addTo(map);
+
+                var userMarker = null;
+                var lineToClosestStation = null;
+            
+                // Clic sur la carte pour ajouter un marqueur
+                map.on('click', function(e) {
+                    if (userMarker) {
+                        map.removeLayer(userMarker);
+                    }
+                    userMarker = L.marker(e.latlng, {
+                        icon: L.icon({
+                            iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-red.png',
+                            iconSize: [38, 38],
+                            iconAnchor: [19, 38],
+                            popupAnchor: [0, -38]
+                        })
+                    }).addTo(map);
+                });
+
+                // Les emplacements des stations
+                var locations = {{ locations|tojson }};
+                
+                // marqueurs pour chaque station de vélo
+                locations.forEach(function(location) {
+                    L.marker([location.lat, location.lng])
+                        .addTo(map)
+                        .bindPopup(location.name);  
+                });
+
+                // Calcul de la station la plus proche au clic
+                document.getElementById('calculate').addEventListener('click', function() {
+                    if (userMarker) {
+                        var userLatLng = userMarker.getLatLng();
+                        var closestStation = null;
+                        var minDistance = Infinity;
+
+                        // Parcours des stations pour trouver la plus proche
+                        locations.forEach(function(location) {
+                            var stationLatLng = L.latLng(location.lat, location.lng);
+                            var distance = map.distance(userLatLng, stationLatLng);
+                            if (distance < minDistance) {
+                                minDistance = distance;
+                                closestStation = location;
+                            }
+                        });
+
+                        // Affichage du nom et de la distance de la station la plus proche
+                        if (closestStation) {
+                            var closestStationLatLng = L.latLng(closestStation.lat, closestStation.lng);
+                            var distanceInKm = (minDistance / 1000).toFixed(2);
+
+                            // Ajouter un popup sur le marqueur de l'utilisateur
+                            userMarker.bindPopup('Position sélectionnée' + '<br>Station la plus proche : ' + closestStation.name + '<br>Distance : ' + distanceInKm + ' km').openPopup();
+
+                            // Ajouter une ligne pour relier l'utilisateur à la station la plus proche
+                            if (lineToClosestStation) {
+                                map.removeLayer(lineToClosestStation);
+                            }
+                            lineToClosestStation = L.polyline([userLatLng, closestStationLatLng], { color: 'blue' }).addTo(map);
+                        }
+                    } else {
+                        alert('Veuillez placer un marqueur sur la carte pour calculer la station la plus proche.');
+                    }
+                });
+            </script>
+        </body>
+        </html>
+            
